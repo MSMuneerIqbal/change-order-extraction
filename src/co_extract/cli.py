@@ -10,7 +10,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from co_extract.evaluate import load_cases, render_markdown, run_eval, run_rules_baseline
-from co_extract.llm import ExtractionError, OpenAIExtractor
+from co_extract.llm import AgentsExtractor, ExtractionError
 from co_extract.loader import SUPPORTED_SUFFIXES
 from co_extract.pipeline import DEFAULT_REVIEW_THRESHOLD, process_document
 
@@ -27,7 +27,7 @@ def _files(target: Path) -> list[Path]:
 
 
 def cmd_extract(args: argparse.Namespace) -> int:
-    extractor = OpenAIExtractor.from_env()
+    extractor = AgentsExtractor.from_env()
     threshold = _threshold(args.threshold)
     args.out.mkdir(parents=True, exist_ok=True)
     failures = 0
@@ -51,7 +51,7 @@ def cmd_eval(args: argparse.Namespace) -> int:
         report = run_rules_baseline(cases, args.out)
         print(f"Wrote {args.out / 'rules_baseline.md'} ({len(report)} fields)")
         return 0
-    extractor = OpenAIExtractor.from_env()
+    extractor = AgentsExtractor.from_env()
     report = run_eval(cases, extractor, args.out, _threshold(args.threshold))
     print(render_markdown(report))
     print(f"Wrote {args.out / 'results.md'} and {args.out / 'results.json'}")

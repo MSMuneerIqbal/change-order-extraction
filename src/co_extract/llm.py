@@ -1,7 +1,10 @@
-"""LLM extraction through the OpenAI SDK with Structured Outputs.
+"""LLM extraction through the OpenAI Agents SDK, with Structured Outputs.
 
-Works with any OpenAI-compatible endpoint (set OPENAI_BASE_URL), for example
-Gemini's. Model, key and base URL come from the environment / .env.
+One agent, no tools, one model call per document. The agent's `output_type` is the
+`LLMExtraction` schema, so the SDK sends it as a strict JSON schema and validates the
+reply. Model, key and base URL come from the environment / .env. Setting
+OPENAI_BASE_URL (for example Gemini's OpenAI-compatible endpoint) switches to the
+Chat Completions API, because such endpoints do not offer the Responses API.
 """
 
 from __future__ import annotations
@@ -11,8 +14,11 @@ import os
 from dataclasses import dataclass
 from typing import Any, Protocol
 
+from agents import Agent, OpenAIChatCompletionsModel, OpenAIResponsesModel, RunConfig, Runner
+from agents.exceptions import AgentsException
+from agents.models.interface import Model
 from dotenv import load_dotenv
-from openai import OpenAI, OpenAIError
+from openai import AsyncOpenAI, OpenAIError
 from pydantic import ValidationError
 
 from co_extract.loader import LoadedDocument
@@ -65,52 +71,56 @@ def estimate_cost(model: str, input_tokens: int, output_tokens: int) -> float | 
     return round((input_tokens * rates[0] + output_tokens * rates[1]) / 1_000_000, 6)
 
 
-def build_messages(doc: LoadedDocument) -> list[dict[str, Any]]:
-    """System prompt plus one user message: text pages as blocks, scans as images."""
-    parts: list[dict[str, Any]] = [{"type": "text", "text": USER_INTRO}]
+def build_input(doc: LoadedDocument) -> list[dict[str, Any]]:
+    """One user message: text pages as delimited blocks, scanned pages as images."""
+    parts: list[dict[str, Any]] = [{"type": "input_text", "text": USER_INTRO}]
     for page in doc.pages:
         if page.scanned:
             encoded = base64.b64encode(page.image or b"").decode("ascii")
-            parts.append({"type": "text", "text": image_page_label(page.number)})
-            parts.append({"type": "image_url", "image_url": {"url": f"data:{page.image_mime};base64,{encoded}"}})
+            parts.append({"type": "input_text", "text": image_page_label(page.number)})
+            parts.append(
+                {"type": "input_image", "image_url": f"data:{page.image_mime};base64,{encoded}", "detail": "high"}
+            )
         else:
-            parts.append({"type": "text", "text": text_page_block(page.number, page.text)})
-    return [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": parts}]
+            parts.append({"type": "input_text", "text": text_page_block(page.number, page.text)})
+    return [{"role": "user", "content": parts}]
 
 
-class OpenAIExtractor:
-    """Calls chat.completions.parse() with the LLMExtraction schema."""
+class AgentsExtractor:
+    """Runs a single tool-less Agent whose output type is the extraction schema."""
 
-    def __init__(self, model: str, client: OpenAI) -> None:
-        self.model = model
-        self._client = client
+    def __init__(self, model_name: str, model: Model) -> None:
+        self.model = model_name
+        self._agent = Agent(
+            name="change-order-extractor",
+            instructions=SYSTEM_PROMPT,
+            model=model,
+            output_type=LLMExtraction,
+        )
 
     @classmethod
-    def from_env(cls) -> OpenAIExtractor:
+    def from_env(cls) -> AgentsExtractor:
         """Read LLM_MODEL, OPENAI_API_KEY and OPENAI_BASE_URL (from .env if present)."""
         load_dotenv()
         api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
             raise ExtractionError("OPENAI_API_KEY is not set. Copy .env.example to .env and add your key.")
-        client = OpenAI(api_key=api_key, base_url=os.getenv("OPENAI_BASE_URL") or None, timeout=REQUEST_TIMEOUT_S)
-        return cls(os.getenv("LLM_MODEL") or DEFAULT_MODEL, client)
+        base_url = os.getenv("OPENAI_BASE_URL") or None
+        name = os.getenv("LLM_MODEL") or DEFAULT_MODEL
+        client = AsyncOpenAI(api_key=api_key, base_url=base_url, timeout=REQUEST_TIMEOUT_S)
+        model: Model = OpenAIChatCompletionsModel(name, client) if base_url else OpenAIResponsesModel(name, client)
+        return cls(name, model)
 
     def extract(self, doc: LoadedDocument) -> LLMResponse:
         try:
-            completion = self._client.chat.completions.parse(
-                model=self.model,
-                messages=build_messages(doc),
-                response_format=LLMExtraction,
+            result = Runner.run_sync(
+                self._agent,
+                build_input(doc),
+                max_turns=1,  # no tools: the first reply is the answer
+                run_config=RunConfig(tracing_disabled=True),  # customer documents are not sent to trace storage
             )
-        except (OpenAIError, ValidationError) as exc:
+            extraction = result.final_output_as(LLMExtraction, raise_if_incorrect_type=True)
+        except (AgentsException, OpenAIError, ValidationError, TypeError) as exc:
             raise ExtractionError(f"{doc.source_file}: model call failed: {exc}") from exc
-        message = completion.choices[0].message
-        if message.parsed is None:
-            raise ExtractionError(f"{doc.source_file}: model returned no structured output ({message.refusal})")
-        usage = completion.usage
-        return LLMResponse(
-            extraction=message.parsed,
-            model=completion.model or self.model,
-            input_tokens=usage.prompt_tokens if usage else 0,
-            output_tokens=usage.completion_tokens if usage else 0,
-        )
+        usage = result.context_wrapper.usage
+        return LLMResponse(extraction, self.model, usage.input_tokens, usage.output_tokens)

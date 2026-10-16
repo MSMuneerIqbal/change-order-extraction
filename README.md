@@ -14,7 +14,7 @@ Take-home project for an AI Engineer role at Sledge. Approach, failure modes and
    1 load   │  text layer per page; a page with < 50 chars is "scanned" -> page image
    2 clean  │  normalise whitespace, keep page numbers
             ▼
-   3 LLM (one call per document, OpenAI Structured Outputs)  ──┐
+   3 LLM (OpenAI Agents SDK, one call per document, Structured Outputs) ┐
             │    value + verbatim evidence + page per field    │   4 rule extractor
             ▼                                                  │   (regex, no LLM)
    5 normalise  ISO dates · Decimal money · int days · trimmed names
@@ -41,7 +41,7 @@ cp .env.example .env         # then put your key in .env
 |---|---|
 | `OPENAI_API_KEY` | API key |
 | `LLM_MODEL` | model name, default `gpt-5-mini` (needs Structured Outputs + image input) |
-| `OPENAI_BASE_URL` | empty for OpenAI; set it to use another OpenAI-compatible endpoint such as Gemini's |
+| `OPENAI_BASE_URL` | empty for OpenAI (Responses API); set it to use another OpenAI-compatible endpoint such as Gemini's (Chat Completions API) |
 | `REVIEW_THRESHOLD` | required-field confidence below this sets `needs_review` (default 0.7) |
 
 No `uv`? `pip install -r requirements.txt` and run `python -m co_extract.cli ...` with `PYTHONPATH=src`.
@@ -49,7 +49,7 @@ No `uv`? `pip install -r requirements.txt` and run `python -m co_extract.cli ...
 ## Run
 
 ```bash
-uv run pytest                                      # 160+ tests, no API key needed
+uv run pytest                                      # 168 tests, no API key needed
 uv run python scripts/make_samples.py              # regenerate data/samples + data/labels (deterministic)
 uv run co-extract extract data/samples --out out/  # a file or a folder
 uv run co-extract eval                             # runs every sample, writes eval/results.md and .json
@@ -113,7 +113,8 @@ the text looks like instructions aimed at an AI, or the document was longer than
 - Documents longer than 25 pages are cut off and flagged. There is no chunking.
 - The rule extractor only knows English labels and North American formats.
 - Cost estimates use a small built-in price table (override with `LLM_PRICE_IN_PER_M` / `LLM_PRICE_OUT_PER_M`); check your provider's current prices.
-- The Gemini OpenAI-compatible endpoint is supported through `OPENAI_BASE_URL` but I have not tested it.
+- The model call goes through the OpenAI Agents SDK (a single agent with no tools; tracing is switched off so documents are not sent to trace storage). Tests use a fake model, so the live API path has not been run yet.
+- The Gemini OpenAI-compatible endpoint is supported through `OPENAI_BASE_URL` (Chat Completions API) but I have not tested it.
 
 ## Layout
 

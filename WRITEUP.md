@@ -3,7 +3,7 @@
 ## 1. Approach
 
 Change orders arrive as forms, letters, emails and scans, so a fixed template does not work. I use one LLM call
-per document with Structured Outputs to read the layout and fill a strict schema. The model has to copy values
+per document, through the OpenAI Agents SDK (one agent, no tools) with Structured Outputs, to read the layout and fill a strict schema. The model has to copy values
 from the document, return null when something is missing, and give a short verbatim quote and page number for every
 value it returns.
 
@@ -51,7 +51,7 @@ means more accurate, not as a precise calibration curve.
 
 ## 4. Results
 
-**Live-model results: not yet run.** I wrote and tested everything with a mocked model (163 tests pass without a key),
+**Live-model results: not yet run.** I wrote and tested everything with a mocked model (168 tests pass without a key),
 but I did not have an API key in the environment where I built this, so I have no numbers for a real model and I am
 not going to estimate them. Running `uv run co-extract eval` with a key fills `eval/results.md` and
 `eval/results.json` with per-field accuracy, line-item precision and recall, how often review catches wrong
