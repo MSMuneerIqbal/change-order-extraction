@@ -19,8 +19,8 @@ from conftest import SCALARS, good_extraction, text_doc
 
 def test_every_scalar_field_is_a_field_and_matches_the_llm_schema():
     assert set(SCALAR_FIELDS) == set(SCALARS) == set(LLMExtraction.model_fields) - {"line_items"}
-    for name in SCALAR_FIELDS:
-        assert set(Field.model_fields) == {"value", "confidence", "evidence", "page", "method"}
+    assert set(Field.model_fields) == {"value", "confidence", "evidence", "page", "method"}
+    assert all(issubclass(ChangeOrder.model_fields[name].annotation, Field) for name in SCALAR_FIELDS)
 
 
 def test_confidence_must_be_between_zero_and_one():
