@@ -1,12 +1,11 @@
 # Example outputs
 
-Real pipeline output files go here. They are produced by a live model run, so they are added after you set
-`OPENAI_API_KEY` in `.env`:
+Real pipeline output from the live run with `gpt-5-mini` (the same files as `eval/outputs/`):
 
-```bash
-uv run co-extract extract data/samples/01_clean_form.pdf --out examples/
-uv run co-extract extract data/samples/06_total_math_error.pdf --out examples/
-uv run co-extract extract data/samples/09_crossed_out_amount.png --out examples/
-```
+| File | Shows |
+|---|---|
+| [01_clean_form.json](01_clean_form.json) | a clean one-page form: everything agrees, not flagged (the only warning is the missing currency) |
+| [06_total_math_error.json](06_total_math_error.json) | the document's own total is wrong: validation error, total confidence 0.68, flagged |
+| [09_crossed_out_amount.json](09_crossed_out_amount.json) | a scanned PNG with a crossed-out amount: the new amount is read, quotes are unverifiable so confidence is lower |
 
-`uv run co-extract eval` also writes every sample's output to `eval/outputs/`.
+Regenerate with `uv run co-extract extract data/samples/<file> --out examples/` (needs a key in `.env`).

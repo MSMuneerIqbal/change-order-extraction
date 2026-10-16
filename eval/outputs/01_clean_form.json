@@ -1,0 +1,205 @@
+{
+  "source_file": "01_clean_form.pdf",
+  "pages": 1,
+  "change_order": {
+    "change_order_number": {
+      "value": "CO-014",
+      "confidence": 0.98,
+      "evidence": "Change Order No.: CO-014",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "project_name": {
+      "value": "Maple Street Medical Office Build-out",
+      "confidence": 0.9,
+      "evidence": "Project: Maple Street Medical Office Build-out",
+      "page": 1,
+      "method": "llm"
+    },
+    "project_number": {
+      "value": "2025-118",
+      "confidence": 0.98,
+      "evidence": "Project No.: 2025-118",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "contractor": {
+      "value": "Tri-County Drywall Inc.",
+      "confidence": 0.9,
+      "evidence": "Contractor (From): Tri-County Drywall Inc.",
+      "page": 1,
+      "method": "llm"
+    },
+    "client": {
+      "value": "Orchard Ridge Construction",
+      "confidence": 0.9,
+      "evidence": "Owner / GC (To): Orchard Ridge Construction",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_issued": {
+      "value": "2026-02-10",
+      "confidence": 0.98,
+      "evidence": "Date Issued: February 10, 2026",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "date_approved": {
+      "value": "2026-02-17",
+      "confidence": 0.98,
+      "evidence": "Date Approved: February 17, 2026",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "description": {
+      "value": "Add a 1-hour fire-rated partition at corridor 2B per RFI-087: furnish and install rated gypsum board and framing both sides.",
+      "confidence": 0.85,
+      "evidence": "Add a 1-hour fire-rated partition at corridor 2B per RFI-087: furnish and install rated gypsum board and framing\nboth sides.",
+      "page": 1,
+      "method": "llm"
+    },
+    "reason_category": {
+      "value": "owner_request",
+      "confidence": 0.85,
+      "evidence": "Add a 1-hour fire-rated partition at corridor 2B per RFI-087: furnish and install rated gypsum board and framing\nboth sides.",
+      "page": 1,
+      "method": "llm"
+    },
+    "line_items": [
+      {
+        "description": "5/8\" Type X gypsum board, both sides of new partition",
+        "quantity": "640",
+        "unit": "SF",
+        "unit_price": "3.85",
+        "amount": "2464.00",
+        "confidence": 0.9,
+        "evidence": "5/8\" Type X gypsum board, both sides of new partition\n640\nSF\n$3.85\n$2,464.00",
+        "page": 1
+      },
+      {
+        "description": "Metal stud framing 3-5/8\", 20 ga",
+        "quantity": "320",
+        "unit": "LF",
+        "unit_price": "4.10",
+        "amount": "1312.00",
+        "confidence": 0.9,
+        "evidence": "Metal stud framing 3-5/8\", 20 ga\n320\nLF\n$4.10\n$1,312.00",
+        "page": 1
+      },
+      {
+        "description": "Fire caulking at head of wall",
+        "quantity": "1",
+        "unit": "LS",
+        "unit_price": "480.00",
+        "amount": "480.00",
+        "confidence": 0.9,
+        "evidence": "Fire caulking at head of wall\n1\nLS\n$480.00\n$480.00",
+        "page": 1
+      },
+      {
+        "description": "Foreman labour",
+        "quantity": "16",
+        "unit": "HR",
+        "unit_price": "62.50",
+        "amount": "1000.00",
+        "confidence": 0.9,
+        "evidence": "Foreman labour\n16\nHR\n$62.50\n$1,000.00",
+        "page": 1
+      }
+    ],
+    "subtotal": {
+      "value": "5256.00",
+      "confidence": 0.98,
+      "evidence": "Subtotal\n$5,256.00",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "tax": {
+      "value": "433.62",
+      "confidence": 0.98,
+      "evidence": "Sales tax (8.25%)\n$433.62",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "total_amount": {
+      "value": "5689.62",
+      "confidence": 0.98,
+      "evidence": "TOTAL CHANGE ORDER AMOUNT\n$5,689.62",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "currency": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "schedule_impact_days": {
+      "value": 3,
+      "confidence": 0.98,
+      "evidence": "Contract time adjustment: +3 calendar days",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "status": {
+      "value": "approved",
+      "confidence": 0.85,
+      "evidence": "STATUS: APPROVED",
+      "page": 1,
+      "method": "llm"
+    },
+    "requested_by": {
+      "value": "Dana Whitfield",
+      "confidence": 0.9,
+      "evidence": "Requested by: Dana Whitfield, Superintendent",
+      "page": 1,
+      "method": "llm"
+    },
+    "approved_by": {
+      "value": "Robert Okafor",
+      "confidence": 0.9,
+      "evidence": "Approved by: Robert Okafor, Project Manager Date: 02/17/2026",
+      "page": 1,
+      "method": "llm"
+    },
+    "signed": {
+      "value": true,
+      "confidence": 0.85,
+      "evidence": "/s/ Robert Okafor",
+      "page": 1,
+      "method": "llm"
+    },
+    "references": {
+      "value": [
+        "RFI-087",
+        "SC-2025-044"
+      ],
+      "confidence": 0.9,
+      "evidence": "Ref: RFI-087; Subcontract SC-2025-044",
+      "page": 1,
+      "method": "llm"
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      {
+        "code": "missing_currency",
+        "message": "amounts found but no currency",
+        "fields": [
+          "currency"
+        ]
+      }
+    ]
+  },
+  "needs_review": false,
+  "review_reasons": [],
+  "processing": {
+    "model": "gpt-5-mini",
+    "input_tokens": 2286,
+    "output_tokens": 1710,
+    "latency_ms": 20097,
+    "cost_usd_estimate": 0.003992
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "model": "gpt-5-mini",
+  "documents": 12,
+  "field_accuracy_overall": 0.974,
+  "per_field": {
+    "change_order_number": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "project_name": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "project_number": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "contractor": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "client": {
+      "correct": 11,
+      "total": 12,
+      "accuracy": 0.917
+    },
+    "date_issued": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "date_approved": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "description": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "reason_category": {
+      "correct": 9,
+      "total": 12,
+      "accuracy": 0.75
+    },
+    "subtotal": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "tax": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "total_amount": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "currency": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "schedule_impact_days": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "status": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "requested_by": {
+      "correct": 11,
+      "total": 12,
+      "accuracy": 0.917
+    },
+    "approved_by": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    },
+    "signed": {
+      "correct": 11,
+      "total": 12,
+      "accuracy": 0.917
+    },
+    "references": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0
+    }
+  },
+  "line_items": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "matched": 44,
+    "predicted": 44,
+    "expected": 44
+  },
+  "review": {
+    "needs_review_rate": 0.333,
+    "flagged": 4,
+    "documents_that_should_be_reviewed": 6,
+    "caught": 2,
+    "catch_rate": 0.333,
+    "flagged_but_clean": [
+      "08_ambiguous_dates.pdf",
+      "10_pending_unsigned_injection.pdf"
+    ],
+    "missed": [
+      "01_clean_form.pdf",
+      "03_email.txt",
+      "04_scanned_rotated.pdf",
+      "09_crossed_out_amount.png"
+    ],
+    "critical_should_review": 2,
+    "critical_caught": 2,
+    "critical_catch_rate": 1.0,
+    "critical_missed": []
+  },
+  "calibration": [
+    {
+      "bucket": "0.0-0.5",
+      "fields": 0,
+      "correct": 0,
+      "accuracy": null
+    },
+    {
+      "bucket": "0.5-0.7",
+      "fields": 9,
+      "correct": 9,
+      "accuracy": 1.0
+    },
+    {
+      "bucket": "0.7-0.9",
+      "fields": 115,
+      "correct": 111,
+      "accuracy": 0.965
+    },
+    {
+      "bucket": "0.9-1.0",
+      "fields": 104,
+      "correct": 102,
+      "accuracy": 0.981
+    }
+  ],
+  "avg_latency_ms": 16684,
+  "avg_cost_usd": 0.004445,
+  "total_input_tokens": 30900,
+  "total_output_tokens": 22805,
+  "per_document": [
+    {
+      "file": "01_clean_form.pdf",
+      "needs_review": false,
+      "should_review": true,
+      "wrong_fields": [
+        "reason_category"
+      ],
+      "latency_ms": 20097,
+      "cost_usd": 0.003992
+    },
+    {
+      "file": "02_two_page_table.pdf",
+      "needs_review": false,
+      "should_review": false,
+      "wrong_fields": [],
+      "latency_ms": 22471,
+      "cost_usd": 0.006302
+    },
+    {
+      "file": "03_email.txt",
+      "needs_review": false,
+      "should_review": true,
+      "wrong_fields": [
+        "client",
+        "requested_by",
+        "signed"
+      ],
+      "latency_ms": 18987,
+      "cost_usd": 0.004542
+    },
+    {
+      "file": "04_scanned_rotated.pdf",
+      "needs_review": false,
+      "should_review": true,
+      "wrong_fields": [
+        "reason_category"
+      ],
+      "latency_ms": 14598,
+      "cost_usd": 0.004649
+    },
+    {
+      "file": "05_missing_number_and_date.pdf",
+      "needs_review": true,
+      "should_review": true,
+      "wrong_fields": [],
+      "latency_ms": 13647,
+      "cost_usd": 0.004222
+    },
+    {
+      "file": "06_total_math_error.pdf",
+      "needs_review": true,
+      "should_review": true,
+      "wrong_fields": [],
+      "latency_ms": 13809,
+      "cost_usd": 0.004026
+    },
+    {
+      "file": "07_credit_deduction.pdf",
+      "needs_review": false,
+      "should_review": false,
+      "wrong_fields": [],
+      "latency_ms": 16078,
+      "cost_usd": 0.004535
+    },
+    {
+      "file": "08_ambiguous_dates.pdf",
+      "needs_review": true,
+      "should_review": false,
+      "wrong_fields": [],
+      "latency_ms": 13073,
+      "cost_usd": 0.003866
+    },
+    {
+      "file": "09_crossed_out_amount.png",
+      "needs_review": false,
+      "should_review": true,
+      "wrong_fields": [
+        "reason_category"
+      ],
+      "latency_ms": 20485,
+      "cost_usd": 0.00427
+    },
+    {
+      "file": "10_pending_unsigned_injection.pdf",
+      "needs_review": true,
+      "should_review": false,
+      "wrong_fields": [],
+      "latency_ms": 13616,
+      "cost_usd": 0.00384
+    },
+    {
+      "file": "11_revised_references_earlier.pdf",
+      "needs_review": false,
+      "should_review": false,
+      "wrong_fields": [],
+      "latency_ms": 16444,
+      "cost_usd": 0.00493
+    },
+    {
+      "file": "12_cad_currency.pdf",
+      "needs_review": false,
+      "should_review": false,
+      "wrong_fields": [],
+      "latency_ms": 16907,
+      "cost_usd": 0.004162
+    }
+  ]
+}

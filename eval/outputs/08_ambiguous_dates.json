@@ -1,0 +1,191 @@
+{
+  "source_file": "08_ambiguous_dates.pdf",
+  "pages": 1,
+  "change_order": {
+    "change_order_number": {
+      "value": "CO-22",
+      "confidence": 0.98,
+      "evidence": "Change Order No.: CO-22",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "project_name": {
+      "value": "Bayou Crossing Retail Center",
+      "confidence": 0.9,
+      "evidence": "Project: Bayou Crossing Retail Center",
+      "page": 1,
+      "method": "llm"
+    },
+    "project_number": {
+      "value": "BCRC-9",
+      "confidence": 0.98,
+      "evidence": "Project No.: BCRC-9",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "contractor": {
+      "value": "Northline Fire Protection LLC",
+      "confidence": 0.9,
+      "evidence": "Contractor (From): Northline Fire Protection LLC",
+      "page": 1,
+      "method": "llm"
+    },
+    "client": {
+      "value": "Gulf Ridge Builders",
+      "confidence": 0.9,
+      "evidence": "Owner / GC (To): Gulf Ridge Builders",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_issued": {
+      "value": "2026-03-04",
+      "confidence": 0.78,
+      "evidence": "Date Issued: 03/04/26",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "date_approved": {
+      "value": "2026-03-12",
+      "confidence": 0.98,
+      "evidence": "Date Approved: 12 March 2026",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "description": {
+      "value": "Tenant bay 3 layout changed; add sprinkler heads and revise the hydraulic calculations and shop drawings.",
+      "confidence": 0.85,
+      "evidence": "Tenant bay 3 layout changed; add sprinkler heads and revise the hydraulic calculations and shop drawings.",
+      "page": 1,
+      "method": "llm"
+    },
+    "reason_category": {
+      "value": "design_change",
+      "confidence": 0.85,
+      "evidence": "Tenant bay 3 layout changed; add sprinkler heads and revise the hydraulic calculations and shop drawings.",
+      "page": 1,
+      "method": "llm"
+    },
+    "line_items": [
+      {
+        "description": "Add 14 sprinkler heads, tenant bay 3",
+        "quantity": "14",
+        "unit": "EA",
+        "unit_price": "118.00",
+        "amount": "1652.00",
+        "confidence": 0.9,
+        "evidence": "Add 14 sprinkler heads, tenant bay 3 14 EA $118.00 $1,652.00",
+        "page": 1
+      },
+      {
+        "description": "Hydraulic recalculation and shop drawings",
+        "quantity": "1",
+        "unit": "LS",
+        "unit_price": "950.00",
+        "amount": "950.00",
+        "confidence": 0.9,
+        "evidence": "Hydraulic recalculation and shop drawings 1 LS $950.00 $950.00",
+        "page": 1
+      }
+    ],
+    "subtotal": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "tax": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "total_amount": {
+      "value": "2602.00",
+      "confidence": 0.98,
+      "evidence": "TOTAL CHANGE ORDER AMOUNT $2,602.00",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "currency": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "schedule_impact_days": {
+      "value": 0,
+      "confidence": 0.98,
+      "evidence": "No change to contract time.",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "status": {
+      "value": "approved",
+      "confidence": 0.85,
+      "evidence": "STATUS: APPROVED",
+      "page": 1,
+      "method": "llm"
+    },
+    "requested_by": {
+      "value": "Sam Okonkwo",
+      "confidence": 0.9,
+      "evidence": "Requested by: Sam Okonkwo",
+      "page": 1,
+      "method": "llm"
+    },
+    "approved_by": {
+      "value": "Linda Tran",
+      "confidence": 0.9,
+      "evidence": "Approved by: Linda Tran Date: __________",
+      "page": 1,
+      "method": "llm"
+    },
+    "signed": {
+      "value": true,
+      "confidence": 0.85,
+      "evidence": "L. Tran",
+      "page": 1,
+      "method": "llm"
+    },
+    "references": {
+      "value": null,
+      "confidence": 0.75,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      {
+        "code": "missing_currency",
+        "message": "amounts found but no currency",
+        "fields": [
+          "currency"
+        ]
+      },
+      {
+        "code": "ambiguous_date",
+        "message": "date_issued is a numeric date that could be day-first or month-first",
+        "fields": [
+          "date_issued"
+        ]
+      }
+    ]
+  },
+  "needs_review": true,
+  "review_reasons": [
+    "date_issued is a numeric date that could be day-first or month-first"
+  ],
+  "processing": {
+    "model": "gpt-5-mini",
+    "input_tokens": 2119,
+    "output_tokens": 1668,
+    "latency_ms": 13073,
+    "cost_usd_estimate": 0.003866
+  }
+}

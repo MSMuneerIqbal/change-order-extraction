@@ -1,0 +1,205 @@
+{
+  "source_file": "06_total_math_error.pdf",
+  "pages": 1,
+  "change_order": {
+    "change_order_number": {
+      "value": "CO-052",
+      "confidence": 0.98,
+      "evidence": "Change Order No.: CO-052",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "project_name": {
+      "value": "Eastgate Distribution Center",
+      "confidence": 0.9,
+      "evidence": "Project: Eastgate Distribution Center",
+      "page": 1,
+      "method": "llm"
+    },
+    "project_number": {
+      "value": "EDC-77",
+      "confidence": 0.98,
+      "evidence": "Project No.: EDC-77",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "contractor": {
+      "value": "Summit Roofing & Sheet Metal Inc.",
+      "confidence": 0.9,
+      "evidence": "Summit Roofing & Sheet Metal Inc. | Page 1",
+      "page": 1,
+      "method": "llm"
+    },
+    "client": {
+      "value": "Northfield GC Services",
+      "confidence": 0.9,
+      "evidence": "Owner / GC (To): Northfield GC Services",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_issued": {
+      "value": "2026-06-03",
+      "confidence": 0.98,
+      "evidence": "Date Issued: June 3, 2026",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "date_approved": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "description": {
+      "value": "Roof drawings omitted flashing at the rooftop unit curbs; replace damaged membrane and add crickets and counterflashing.",
+      "confidence": 0.85,
+      "evidence": "Roof drawings omitted flashing at the rooftop unit curbs; replace damaged membrane and add crickets and counterflashing.",
+      "page": 1,
+      "method": "llm"
+    },
+    "reason_category": {
+      "value": "error_omission",
+      "confidence": 0.85,
+      "evidence": "Roof drawings omitted flashing at the rooftop unit curbs; replace damaged membrane and add crickets and counterflashing.",
+      "page": 1,
+      "method": "llm"
+    },
+    "line_items": [
+      {
+        "description": "Replace damaged TPO membrane at RTU curbs",
+        "quantity": "640",
+        "unit": "SF",
+        "unit_price": "11.50",
+        "amount": "7360.00",
+        "confidence": 0.9,
+        "evidence": "Replace damaged TPO membrane at RTU curbs 640 SF $11.50 $7,360.00",
+        "page": 1
+      },
+      {
+        "description": "Tapered insulation crickets",
+        "quantity": "12",
+        "unit": "EA",
+        "unit_price": "245.00",
+        "amount": "2940.00",
+        "confidence": 0.9,
+        "evidence": "Tapered insulation crickets 12 EA $245.00 $2,940.00",
+        "page": 1
+      },
+      {
+        "description": "Sheet metal counterflashing",
+        "quantity": "210",
+        "unit": "LF",
+        "unit_price": "18.50",
+        "amount": "3885.00",
+        "confidence": 0.9,
+        "evidence": "Sheet metal counterflashing 210 LF $18.50 $3,885.00",
+        "page": 1
+      }
+    ],
+    "subtotal": {
+      "value": "14185.00",
+      "confidence": 0.68,
+      "evidence": "Subtotal $14,185.00",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "tax": {
+      "value": "992.95",
+      "confidence": 0.68,
+      "evidence": "Sales tax (7%) $992.95",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "total_amount": {
+      "value": "15117.95",
+      "confidence": 0.68,
+      "evidence": "TOTAL CHANGE ORDER AMOUNT $15,117.95",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "currency": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "schedule_impact_days": {
+      "value": 5,
+      "confidence": 0.98,
+      "evidence": "Schedule impact: 5 calendar days",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "status": {
+      "value": "pending",
+      "confidence": 0.85,
+      "evidence": "STATUS: PENDING",
+      "page": 1,
+      "method": "llm"
+    },
+    "requested_by": {
+      "value": "Wes Kowalczyk",
+      "confidence": 0.9,
+      "evidence": "Requested by: Wes Kowalczyk",
+      "page": 1,
+      "method": "llm"
+    },
+    "approved_by": {
+      "value": null,
+      "confidence": 0.75,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "signed": {
+      "value": false,
+      "confidence": 0.5,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "references": {
+      "value": null,
+      "confidence": 0.75,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    }
+  },
+  "validation": {
+    "errors": [
+      {
+        "code": "total_mismatch",
+        "message": "subtotal + tax = 15177.95, document total is 15117.95",
+        "fields": [
+          "subtotal",
+          "tax",
+          "total_amount"
+        ]
+      }
+    ],
+    "warnings": [
+      {
+        "code": "missing_currency",
+        "message": "amounts found but no currency",
+        "fields": [
+          "currency"
+        ]
+      }
+    ]
+  },
+  "needs_review": true,
+  "review_reasons": [
+    "validation error: subtotal + tax = 15177.95, document total is 15117.95",
+    "required field total_amount has low confidence (0.68 < 0.7)"
+  ],
+  "processing": {
+    "model": "gpt-5-mini",
+    "input_tokens": 2159,
+    "output_tokens": 1743,
+    "latency_ms": 13809,
+    "cost_usd_estimate": 0.004026
+  }
+}

@@ -3,7 +3,7 @@
 | Field | Found | Correct | Labelled | Precision | Recall |
 |---|---|---|---|---|---|
 | change_order_number | 9 | 9 | 11 | 100.0% | 81.8% |
-| currency | 1 | 1 | 12 | 100.0% | 8.3% |
+| currency | 1 | 1 | 1 | 100.0% | 100.0% |
 | date_approved | 6 | 6 | 7 | 100.0% | 85.7% |
 | date_issued | 6 | 6 | 11 | 100.0% | 54.5% |
 | project_number | 6 | 6 | 11 | 100.0% | 54.5% |

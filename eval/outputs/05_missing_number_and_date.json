@@ -1,0 +1,202 @@
+{
+  "source_file": "05_missing_number_and_date.pdf",
+  "pages": 1,
+  "change_order": {
+    "change_order_number": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "project_name": {
+      "value": "Harbor Point Warehouse",
+      "confidence": 0.9,
+      "evidence": "Re: Harbor Point Warehouse (Job HPW-31)",
+      "page": 1,
+      "method": "llm"
+    },
+    "project_number": {
+      "value": "HPW-31",
+      "confidence": 0.9,
+      "evidence": "Re: Harbor Point Warehouse (Job HPW-31)",
+      "page": 1,
+      "method": "llm"
+    },
+    "contractor": {
+      "value": "Granite State Excavating LLC",
+      "confidence": 0.9,
+      "evidence": "Granite State Excavating LLC",
+      "page": 1,
+      "method": "llm"
+    },
+    "client": {
+      "value": "Delmar Industrial Partners",
+      "confidence": 0.9,
+      "evidence": "To: Delmar Industrial Partners",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_issued": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "date_approved": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "description": {
+      "value": "Remove an unmarked abandoned concrete duct bank found at gridline C-4 that was not shown on the civil drawings.",
+      "confidence": 0.85,
+      "evidence": "Remove an unmarked abandoned concrete duct bank found at gridline C-4 that was not shown on the civil drawings.",
+      "page": 1,
+      "method": "llm"
+    },
+    "reason_category": {
+      "value": "unforeseen_condition",
+      "confidence": 0.85,
+      "evidence": "Remove an unmarked abandoned concrete duct bank found at gridline C-4 that was not shown on the civil drawings.",
+      "page": 1,
+      "method": "llm"
+    },
+    "line_items": [
+      {
+        "description": "Saw-cut and remove abandoned concrete duct bank at gridline C-4",
+        "quantity": "38",
+        "unit": "LF",
+        "unit_price": "92.00",
+        "amount": "3496.00",
+        "confidence": 0.9,
+        "evidence": "Saw-cut and remove abandoned concrete duct bank at gridline C-4 38 LF $92.00 $3,496.00",
+        "page": 1
+      },
+      {
+        "description": "Haul-off and disposal",
+        "quantity": "6",
+        "unit": "LD",
+        "unit_price": "310.00",
+        "amount": "1860.00",
+        "confidence": 0.9,
+        "evidence": "Haul-off and disposal 6 LD $310.00 $1,860.00",
+        "page": 1
+      },
+      {
+        "description": "Backfill and compaction, 95% proctor",
+        "quantity": "1",
+        "unit": "LS",
+        "unit_price": "1450.00",
+        "amount": "1450.00",
+        "confidence": 0.9,
+        "evidence": "Backfill and compaction, 95% proctor 1 LS $1,450.00 $1,450.00",
+        "page": 1
+      }
+    ],
+    "subtotal": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "tax": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "total_amount": {
+      "value": "6806.00",
+      "confidence": 0.98,
+      "evidence": "TOTAL CHANGE ORDER AMOUNT $6,806.00",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "currency": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "schedule_impact_days": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "status": {
+      "value": "pending",
+      "confidence": 0.85,
+      "evidence": "Status: PENDING OWNER REVIEW",
+      "page": 1,
+      "method": "llm"
+    },
+    "requested_by": {
+      "value": null,
+      "confidence": 0.75,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "approved_by": {
+      "value": null,
+      "confidence": 0.75,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "signed": {
+      "value": false,
+      "confidence": 0.5,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "references": {
+      "value": null,
+      "confidence": 0.75,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    }
+  },
+  "validation": {
+    "errors": [
+      {
+        "code": "missing_required",
+        "message": "change_order_number is missing",
+        "fields": [
+          "change_order_number"
+        ]
+      }
+    ],
+    "warnings": [
+      {
+        "code": "missing_currency",
+        "message": "amounts found but no currency",
+        "fields": [
+          "currency"
+        ]
+      }
+    ]
+  },
+  "needs_review": true,
+  "review_reasons": [
+    "validation error: change_order_number is missing"
+  ],
+  "processing": {
+    "model": "gpt-5-mini",
+    "input_tokens": 2119,
+    "output_tokens": 1846,
+    "latency_ms": 13647,
+    "cost_usd_estimate": 0.004222
+  }
+}

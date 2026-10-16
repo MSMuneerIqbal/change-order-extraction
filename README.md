@@ -49,7 +49,7 @@ No `uv`? `pip install -r requirements.txt` and run `python -m co_extract.cli ...
 ## Run
 
 ```bash
-uv run pytest                                      # 168 tests, no API key needed
+uv run pytest                                      # 172 tests, no API key needed
 uv run python scripts/make_samples.py              # regenerate data/samples + data/labels (deterministic)
 uv run co-extract extract data/samples --out out/  # a file or a folder
 uv run co-extract eval                             # runs every sample, writes eval/results.md and .json
@@ -58,7 +58,8 @@ uv run co-extract eval --rules-only                # rule extractor alone, no ke
 
 ## Output
 
-One JSON file per document. Abridged:
+One JSON file per document. This is real output for `data/samples/01_clean_form.pdf`, abridged
+(full files in [examples/](examples/)):
 
 ```jsonc
 {
@@ -66,19 +67,42 @@ One JSON file per document. Abridged:
   "pages": 1,
   "change_order": {
     "change_order_number": {"value": "CO-014", "confidence": 0.98, "evidence": "Change Order No.: CO-014", "page": 1, "method": "llm+rule"},
-    "total_amount":        {"value": "5689.62", "confidence": 0.98, "evidence": "TOTAL CHANGE ORDER AMOUNT $5,689.62", "page": 1, "method": "llm+rule"},
-    "line_items": [{"description": "...", "quantity": "640", "unit": "SF", "unit_price": "3.85", "amount": "2464.00", "confidence": 0.9, "evidence": "...", "page": 1}],
-    "...": "..."
+    "total_amount":        {"value": "5689.62", "confidence": 0.98, "evidence": "TOTAL CHANGE ORDER AMOUNT
+$5,689.62", "page": 1, "method": "llm+rule"},
+    "currency":            {"value": null, "confidence": 0.85, "evidence": null, "page": null, "method": "llm"},
+    "line_items": [
+      {"description": "5/8\" Type X gypsum board, both sides of new partition", "quantity": "640", "unit": "SF",
+       "unit_price": "3.85", "amount": "2464.00", "confidence": 0.9, "page": 1}   // evidence omitted here
+    ],
+    "...": "other fields omitted"
   },
-  "validation": {"errors": [], "warnings": []},
+  "validation": {"errors": [], "warnings": [{"code": "missing_currency", "message": "amounts found but no currency", "fields": ["currency"]}]},
   "needs_review": false,
   "review_reasons": [],
-  "processing": {"model": "...", "input_tokens": 0, "output_tokens": 0, "latency_ms": 0, "cost_usd_estimate": 0.0}
+  "processing": {"model": "gpt-5-mini", "input_tokens": 2286, "output_tokens": 1710, "latency_ms": 20097, "cost_usd_estimate": 0.003992}
 }
 ```
 
 Money is a string with 2 decimal places (exact, no float rounding), dates are ISO 8601, days are integers
-(positive = delay, negative = time saved). The numbers above only show the shape; real outputs are in [examples/](examples/).
+(positive = delay, negative = time saved). `currency` is null here because the document only prints `$`, which
+does not say which dollar; that raises a warning instead of a guess.
+[examples/06_total_math_error.json](examples/06_total_math_error.json) shows a flagged document, and
+[examples/09_crossed_out_amount.json](examples/09_crossed_out_amount.json) a scanned image with a crossed-out amount.
+
+## Results
+
+Live run with `gpt-5-mini` on the 12 synthetic documents (`eval/results.md`, details and caveats in [WRITEUP.md](WRITEUP.md)):
+
+| | |
+|---|---|
+| Field accuracy | 97.4% (222 of 228); 90.4% in the first run, before I fixed labels and the prompt |
+| Line items, precision / recall | 100% / 100% (44 of 44) |
+| Flagged `needs_review` | 4 of 12 (the missing number, the arithmetic error, the ambiguous date, the injected instruction) |
+| Latency / cost per document | about 17 s / $0.0045 (estimate) |
+
+I tuned the prompt and labels on these same 12 documents, so treat the accuracy as a development-set number, not
+a held-out estimate. The 6 remaining wrong fields are judgement calls (`reason_category`, and who the client and
+requester are in the email), and the confidence score does not catch them.
 
 ## How confidence works
 
@@ -87,7 +111,7 @@ The model's own certainty is never used. Each field starts at 0.80 and is adjust
 
 | Check | Effect |
 |---|---|
-| Evidence quote found in the document (rapidfuzz partial match >= 90, and every number in the quote appears exactly) and the value appears in the quote | +0.10 |
+| Evidence quote found in the document (rapidfuzz partial match >= 90, and every number in the quote appears exactly) and the value appears in the quote | +0.10 (+0.05 for enums, booleans and summaries, which the quote cannot verify) |
 | Quote not found anywhere in the document | -0.45 |
 | Quote found but the value does not come from it | -0.25 |
 | No quote for a non-null value | -0.30 |
@@ -105,7 +129,10 @@ the text looks like instructions aimed at an AI, or the document was longer than
 
 ## Known limits
 
-- The eval set is 12 synthetic documents. It shows behaviour on the failure modes I chose; it says little about real-world accuracy.
+- The eval set is 12 synthetic documents, and I tuned on them. It shows behaviour on the failure modes I chose; it says little about real-world accuracy.
+- Confidence does not catch judgement errors (`reason_category`, who the client is in an email): a real quote does not prove a classification is right.
+- With only 6 wrong fields in the eval, the calibration table cannot show whether confidence is well calibrated.
+- A bare `$` gives a null currency and a warning, so most documents here carry that warning.
 - One change order per file. If a file holds several, the prompt asks for the first and ignores the rest; nothing detects the others.
 - Crossed-out values are only visible on image pages. A strike-through drawn over a text layer does not show up in the extracted text.
 - Scanned pages have no text layer, so their evidence quotes cannot be verified, and the rule extractor sees nothing there.
@@ -113,7 +140,7 @@ the text looks like instructions aimed at an AI, or the document was longer than
 - Documents longer than 25 pages are cut off and flagged. There is no chunking.
 - The rule extractor only knows English labels and North American formats.
 - Cost estimates use a small built-in price table (override with `LLM_PRICE_IN_PER_M` / `LLM_PRICE_OUT_PER_M`); check your provider's current prices.
-- The model call goes through the OpenAI Agents SDK (a single agent with no tools; tracing is switched off so documents are not sent to trace storage). Tests use a fake model, so the live API path has not been run yet.
+- The model call goes through the OpenAI Agents SDK (a single agent with no tools; tracing is switched off so documents are not sent to trace storage). Unit tests use a fake model; the live path was run for the results above.
 - The Gemini OpenAI-compatible endpoint is supported through `OPENAI_BASE_URL` (Chat Completions API) but I have not tested it.
 
 ## Layout

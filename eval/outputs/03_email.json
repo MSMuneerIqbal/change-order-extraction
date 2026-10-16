@@ -1,0 +1,194 @@
+{
+  "source_file": "03_email.txt",
+  "pages": 1,
+  "change_order": {
+    "change_order_number": {
+      "value": "7",
+      "confidence": 0.98,
+      "evidence": "Please treat this email as Change Order No. 7 for the Riverside Data Annex job.",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "project_name": {
+      "value": "Riverside Data Annex",
+      "confidence": 0.9,
+      "evidence": "Please treat this email as Change Order No. 7 for the Riverside Data Annex job.",
+      "page": 1,
+      "method": "llm"
+    },
+    "project_number": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "contractor": {
+      "value": "Kestrel Electric LLC",
+      "confidence": 0.9,
+      "evidence": "Priya Raman Project Manager, Kestrel Electric LLC",
+      "page": 1,
+      "method": "llm"
+    },
+    "client": {
+      "value": "Marcus Hale",
+      "confidence": 0.9,
+      "evidence": "To: Marcus Hale <mhale@beaconhill.example>",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_issued": {
+      "value": "2026-03-03",
+      "confidence": 0.9,
+      "evidence": "Date: Tue, 3 Mar 2026 16:42:10 -0600",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_approved": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "description": {
+      "value": "we will add six dedicated 20A circuits and a new 100A subpanel for the server room (see RFI-318 for the layout).",
+      "confidence": 0.85,
+      "evidence": "As you asked, we will add six dedicated 20A circuits and a new 100A subpanel for the server room (see RFI-318 for the layout).",
+      "page": 1,
+      "method": "llm"
+    },
+    "reason_category": {
+      "value": "owner_request",
+      "confidence": 0.85,
+      "evidence": "As you asked, we will add six dedicated 20A circuits and a new 100A subpanel for the server room (see RFI-318 for the layout).",
+      "page": 1,
+      "method": "llm"
+    },
+    "line_items": [
+      {
+        "description": "six dedicated 20A circuits",
+        "quantity": null,
+        "unit": null,
+        "unit_price": null,
+        "amount": "6300.00",
+        "confidence": 0.9,
+        "evidence": "the six circuits come to $6,300 for materials and labour,",
+        "page": 1
+      },
+      {
+        "description": "subpanel",
+        "quantity": null,
+        "unit": null,
+        "unit_price": null,
+        "amount": "2240.00",
+        "confidence": 0.9,
+        "evidence": "the subpanel is $2,240,",
+        "page": 1
+      },
+      {
+        "description": "permit and inspection fees",
+        "quantity": null,
+        "unit": null,
+        "unit_price": null,
+        "amount": "1300.00",
+        "confidence": 0.9,
+        "evidence": "and the permit and inspection fees are $1,300.",
+        "page": 1
+      }
+    ],
+    "subtotal": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "tax": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "total_amount": {
+      "value": "9840.00",
+      "confidence": 0.9,
+      "evidence": "That brings the change to $9,840 in total, no tax since the owner is exempt.",
+      "page": 1,
+      "method": "llm"
+    },
+    "currency": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "schedule_impact_days": {
+      "value": 2,
+      "confidence": 0.55,
+      "evidence": "We would need two extra working days on the schedule to fit this around the drywall crew.",
+      "page": 1,
+      "method": "llm"
+    },
+    "status": {
+      "value": "pending",
+      "confidence": 0.85,
+      "evidence": "Can you confirm by Friday so we can order the gear?",
+      "page": 1,
+      "method": "llm"
+    },
+    "requested_by": {
+      "value": "Priya Raman",
+      "confidence": 0.9,
+      "evidence": "Thanks, Priya Raman",
+      "page": 1,
+      "method": "llm"
+    },
+    "approved_by": {
+      "value": null,
+      "confidence": 0.75,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "signed": {
+      "value": true,
+      "confidence": 0.85,
+      "evidence": "Thanks, Priya Raman",
+      "page": 1,
+      "method": "llm"
+    },
+    "references": {
+      "value": [
+        "RFI-318"
+      ],
+      "confidence": 0.9,
+      "evidence": "(see RFI-318 for the layout)",
+      "page": 1,
+      "method": "llm"
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      {
+        "code": "missing_currency",
+        "message": "amounts found but no currency",
+        "fields": [
+          "currency"
+        ]
+      }
+    ]
+  },
+  "needs_review": false,
+  "review_reasons": [],
+  "processing": {
+    "model": "gpt-5-mini",
+    "input_tokens": 2136,
+    "output_tokens": 2004,
+    "latency_ms": 18987,
+    "cost_usd_estimate": 0.004542
+  }
+}

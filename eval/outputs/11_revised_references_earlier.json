@@ -1,0 +1,196 @@
+{
+  "source_file": "11_revised_references_earlier.pdf",
+  "pages": 1,
+  "change_order": {
+    "change_order_number": {
+      "value": "CO-017R1",
+      "confidence": 0.98,
+      "evidence": "REVISED CHANGE ORDER CO-017R1",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "project_name": {
+      "value": "Quarry Hill Parking Structure",
+      "confidence": 0.9,
+      "evidence": "Re: Quarry Hill Parking Structure (Job QH-PS-12)",
+      "page": 1,
+      "method": "llm"
+    },
+    "project_number": {
+      "value": "QH-PS-12",
+      "confidence": 0.9,
+      "evidence": "Re: Quarry Hill Parking Structure (Job QH-PS-12)",
+      "page": 1,
+      "method": "llm"
+    },
+    "contractor": {
+      "value": "Pioneer Concrete Works Inc.",
+      "confidence": 0.9,
+      "evidence": "Pioneer Concrete Works Inc.",
+      "page": 1,
+      "method": "llm"
+    },
+    "client": {
+      "value": "Vantage Point Constructors",
+      "confidence": 0.9,
+      "evidence": "To: Vantage Point Constructors",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_issued": {
+      "value": "2026-01-29",
+      "confidence": 0.9,
+      "evidence": "January 29, 2026",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_approved": {
+      "value": "2026-02-04",
+      "confidence": 0.98,
+      "evidence": "Approved on February 4, 2026",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "description": {
+      "value": "Revised pricing for the added grade beam at the ramp, superseding CO-017 dated January 22, 2026, after RFI-142 changed the beam depth.",
+      "confidence": 0.85,
+      "evidence": "Revised pricing for the added grade beam at the ramp, superseding CO-017 dated January 22, 2026, after RFI-142 changed the beam depth.",
+      "page": 1,
+      "method": "llm"
+    },
+    "reason_category": {
+      "value": "design_change",
+      "confidence": 0.85,
+      "evidence": "Revised pricing for the added grade beam at the ramp, superseding CO-017 dated January 22, 2026, after RFI-142 changed the beam depth.",
+      "page": 1,
+      "method": "llm"
+    },
+    "line_items": [
+      {
+        "description": "Footing concrete, 4000 psi, revised pour",
+        "quantity": "38",
+        "unit": "CY",
+        "unit_price": "186.00",
+        "amount": "7068.00",
+        "confidence": 0.9,
+        "evidence": "Footing concrete, 4000 psi, revised pour 38 CY $186.00 $7,068.00",
+        "page": 1
+      },
+      {
+        "description": "Additional rebar, #5 at grade beam",
+        "quantity": "2.4",
+        "unit": "TON",
+        "unit_price": "1650.00",
+        "amount": "3960.00",
+        "confidence": 0.9,
+        "evidence": "Additional rebar, #5 at grade beam 2.4 TON $1,650.00 $3,960.00",
+        "page": 1
+      },
+      {
+        "description": "Pump truck, half day",
+        "quantity": "1",
+        "unit": "EA",
+        "unit_price": "780.00",
+        "amount": "780.00",
+        "confidence": 0.9,
+        "evidence": "Pump truck, half day 1 EA $780.00 $780.00",
+        "page": 1
+      }
+    ],
+    "subtotal": {
+      "value": "11808.00",
+      "confidence": 0.98,
+      "evidence": "Subtotal $11,808.00",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "tax": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "total_amount": {
+      "value": "11808.00",
+      "confidence": 0.98,
+      "evidence": "TOTAL CHANGE ORDER AMOUNT $11,808.00",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "currency": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "schedule_impact_days": {
+      "value": 4,
+      "confidence": 0.98,
+      "evidence": "Schedule impact: +4 calendar days",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "status": {
+      "value": "approved",
+      "confidence": 0.85,
+      "evidence": "Status: APPROVED",
+      "page": 1,
+      "method": "llm"
+    },
+    "requested_by": {
+      "value": "Isaac Tolliver",
+      "confidence": 0.9,
+      "evidence": "Requested by: Isaac Tolliver",
+      "page": 1,
+      "method": "llm"
+    },
+    "approved_by": {
+      "value": "Maureen Castellano",
+      "confidence": 0.9,
+      "evidence": "Approved by: Maureen Castellano Date: Feb 4, 2026",
+      "page": 1,
+      "method": "llm"
+    },
+    "signed": {
+      "value": true,
+      "confidence": 0.85,
+      "evidence": "M. Castellano",
+      "page": 1,
+      "method": "llm"
+    },
+    "references": {
+      "value": [
+        "CO-017",
+        "RFI-142",
+        "PO-88213"
+      ],
+      "confidence": 0.9,
+      "evidence": "Reference: CO-017 (superseded), RFI-142, Purchase Order PO-88213",
+      "page": 1,
+      "method": "llm"
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      {
+        "code": "missing_currency",
+        "message": "amounts found but no currency",
+        "fields": [
+          "currency"
+        ]
+      }
+    ]
+  },
+  "needs_review": false,
+  "review_reasons": [],
+  "processing": {
+    "model": "gpt-5-mini",
+    "input_tokens": 2200,
+    "output_tokens": 2190,
+    "latency_ms": 16444,
+    "cost_usd_estimate": 0.00493
+  }
+}

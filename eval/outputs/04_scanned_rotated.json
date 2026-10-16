@@ -1,0 +1,194 @@
+{
+  "source_file": "04_scanned_rotated.pdf",
+  "pages": 1,
+  "change_order": {
+    "change_order_number": {
+      "value": "CO-31",
+      "confidence": 0.75,
+      "evidence": "Change Order No.: CO-31",
+      "page": 1,
+      "method": "llm"
+    },
+    "project_name": {
+      "value": "Cedar Point Elementary Addition",
+      "confidence": 0.75,
+      "evidence": "Project: Cedar Point Elementary Addition",
+      "page": 1,
+      "method": "llm"
+    },
+    "project_number": {
+      "value": "CP-0925",
+      "confidence": 0.75,
+      "evidence": "Project No.: CP-0925",
+      "page": 1,
+      "method": "llm"
+    },
+    "contractor": {
+      "value": "Bluebird Mechanical Ltd.",
+      "confidence": 0.75,
+      "evidence": "Contractor (From): Bluebird Mechanical Ltd.",
+      "page": 1,
+      "method": "llm"
+    },
+    "client": {
+      "value": "Hale & Whitcomb Builders",
+      "confidence": 0.75,
+      "evidence": "Owner / GC (To): Hale & Whitcomb Builders",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_issued": {
+      "value": "2026-08-05",
+      "confidence": 0.75,
+      "evidence": "Date Issued:  Aug 5, 2026",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_approved": {
+      "value": "2026-08-12",
+      "confidence": 0.75,
+      "evidence": "Date Approved:  Aug 12, 2026",
+      "page": 1,
+      "method": "llm"
+    },
+    "description": {
+      "value": "Add isolation valves and insulation at AHU-3 so the unit can be serviced without shutting down the chilled water loop.",
+      "confidence": 0.75,
+      "evidence": "Add isolation valves and insulation at AHU-3 so the unit can be serviced without shutting down the chilled water loop.",
+      "page": 1,
+      "method": "llm"
+    },
+    "reason_category": {
+      "value": "design_change",
+      "confidence": 0.75,
+      "evidence": "Add isolation valves and insulation at AHU-3 so the unit can be serviced without shutting down the chilled water loop.",
+      "page": 1,
+      "method": "llm"
+    },
+    "line_items": [
+      {
+        "description": "Add isolation valves at AHU-3 supply and return",
+        "quantity": "4",
+        "unit": "EA",
+        "unit_price": "385.00",
+        "amount": "1540.00",
+        "confidence": 0.75,
+        "evidence": "Add isolation valves at AHU-3 supply and return     .4  EA    $385.00    $1,540.00",
+        "page": 1
+      },
+      {
+        "description": "Pipe insulation, 2\" chilled water",
+        "quantity": "85",
+        "unit": "LF",
+        "unit_price": "14.20",
+        "amount": "1207.00",
+        "confidence": 0.75,
+        "evidence": "Pipe insulation, 2\" chilled water.     85  LF    $14.20    $1,207.00",
+        "page": 1
+      },
+      {
+        "description": "Pipefitter labour",
+        "quantity": "24",
+        "unit": "HR",
+        "unit_price": "96.00",
+        "amount": "2304.00",
+        "confidence": 0.75,
+        "evidence": "Pipefitter labour     24  HR    $96.00    $2,304.00",
+        "page": 1
+      }
+    ],
+    "subtotal": {
+      "value": "5051.00",
+      "confidence": 0.75,
+      "evidence": "Subtotal    $5,051.00",
+      "page": 1,
+      "method": "llm"
+    },
+    "tax": {
+      "value": "303.06",
+      "confidence": 0.75,
+      "evidence": "Sales tax (6%)    $303.06",
+      "page": 1,
+      "method": "llm"
+    },
+    "total_amount": {
+      "value": "5354.06",
+      "confidence": 0.75,
+      "evidence": "TOTAL CHANGE ORDER AMOUNT    $5,354.06",
+      "page": 1,
+      "method": "llm"
+    },
+    "currency": {
+      "value": null,
+      "confidence": 0.7,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "schedule_impact_days": {
+      "value": 0,
+      "confidence": 0.75,
+      "evidence": "No change to contract time.",
+      "page": 1,
+      "method": "llm"
+    },
+    "status": {
+      "value": "approved",
+      "confidence": 0.75,
+      "evidence": "STATUS: APPROVED",
+      "page": 1,
+      "method": "llm"
+    },
+    "requested_by": {
+      "value": "Tom Verhoeven",
+      "confidence": 0.75,
+      "evidence": "Requested by: Tom Verhoeven",
+      "page": 1,
+      "method": "llm"
+    },
+    "approved_by": {
+      "value": "Carla Mbeki",
+      "confidence": 0.75,
+      "evidence": "Approved by:  Carla Mbeki  Date: Aug 12, 2026",
+      "page": 1,
+      "method": "llm"
+    },
+    "signed": {
+      "value": true,
+      "confidence": 0.75,
+      "evidence": "Signature: C. Mbeki",
+      "page": 1,
+      "method": "llm"
+    },
+    "references": {
+      "value": [
+        "RFI-066"
+      ],
+      "confidence": 0.75,
+      "evidence": "Ref: RFI-066",
+      "page": 1,
+      "method": "llm"
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      {
+        "code": "missing_currency",
+        "message": "amounts found but no currency",
+        "fields": [
+          "currency"
+        ]
+      }
+    ]
+  },
+  "needs_review": false,
+  "review_reasons": [],
+  "processing": {
+    "model": "gpt-5-mini",
+    "input_tokens": 4379,
+    "output_tokens": 1777,
+    "latency_ms": 14598,
+    "cost_usd_estimate": 0.004649
+  }
+}

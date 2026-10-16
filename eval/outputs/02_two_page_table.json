@@ -1,0 +1,306 @@
+{
+  "source_file": "02_two_page_table.pdf",
+  "pages": 2,
+  "change_order": {
+    "change_order_number": {
+      "value": "CO-203",
+      "confidence": 0.98,
+      "evidence": "CHANGE ORDER CO-203",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "project_name": {
+      "value": "Northgate Lofts Phase 2",
+      "confidence": 0.9,
+      "evidence": "Re: Northgate Lofts Phase 2 (Job NG2-4410)",
+      "page": 1,
+      "method": "llm"
+    },
+    "project_number": {
+      "value": "NG2-4410",
+      "confidence": 0.9,
+      "evidence": "Re: Northgate Lofts Phase 2 (Job NG2-4410)",
+      "page": 1,
+      "method": "llm"
+    },
+    "contractor": {
+      "value": "Kestrel Electric LLC",
+      "confidence": 0.9,
+      "evidence": "Kestrel Electric LLC",
+      "page": 1,
+      "method": "llm"
+    },
+    "client": {
+      "value": "Alder Point Development",
+      "confidence": 0.9,
+      "evidence": "To: Alder Point Development",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_issued": {
+      "value": "2026-03-11",
+      "confidence": 0.9,
+      "evidence": "11 March 2026",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_approved": {
+      "value": "2026-03-19",
+      "confidence": 0.98,
+      "evidence": "Approved on 19 March 2026",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "description": {
+      "value": "Electrical rough-in revisions on Levels 2-4 per ASI-12 and RFI-231: relocate circuits, add lighting and controls, update panel schedules.",
+      "confidence": 0.85,
+      "evidence": "Electrical rough-in revisions on Levels 2-4 per ASI-12 and RFI-231: relocate circuits, add lighting and controls, update\npanel schedules.",
+      "page": 1,
+      "method": "llm"
+    },
+    "reason_category": {
+      "value": "design_change",
+      "confidence": 0.85,
+      "evidence": "Electrical rough-in revisions on Levels 2-4 per ASI-12 and RFI-231: relocate circuits, add lighting and controls, update\npanel schedules.",
+      "page": 1,
+      "method": "llm"
+    },
+    "line_items": [
+      {
+        "description": "Relocate 20A branch circuits, Level 2 corridor",
+        "quantity": "18",
+        "unit": "EA",
+        "unit_price": "142.00",
+        "amount": "2556.00",
+        "confidence": 0.9,
+        "evidence": "Relocate 20A branch circuits, Level 2 corridor\n18\nEA\n$142.00\n$2,556.00",
+        "page": 1
+      },
+      {
+        "description": "1\" EMT conduit and fittings",
+        "quantity": "640",
+        "unit": "LF",
+        "unit_price": "6.25",
+        "amount": "4000.00",
+        "confidence": 0.9,
+        "evidence": "1\" EMT conduit and fittings\n640\nLF\n$6.25\n$4,000.00",
+        "page": 1
+      },
+      {
+        "description": "#12 THHN copper conductor",
+        "quantity": "1900",
+        "unit": "LF",
+        "unit_price": "0.85",
+        "amount": "1615.00",
+        "confidence": 0.9,
+        "evidence": "#12 THHN copper conductor\n1900\nLF\n$0.85\n$1,615.00",
+        "page": 1
+      },
+      {
+        "description": "Recessed LED troffer, 2x4, 40W",
+        "quantity": "22",
+        "unit": "EA",
+        "unit_price": "118.50",
+        "amount": "2607.00",
+        "confidence": 0.9,
+        "evidence": "Recessed LED troffer, 2x4, 40W\n22\nEA\n$118.50\n$2,607.00",
+        "page": 1
+      },
+      {
+        "description": "Occupancy sensors, ceiling mount",
+        "quantity": "9",
+        "unit": "EA",
+        "unit_price": "64.00",
+        "amount": "576.00",
+        "confidence": 0.9,
+        "evidence": "Occupancy sensors, ceiling mount\n9\nEA\n$64.00\n$576.00",
+        "page": 1
+      },
+      {
+        "description": "Junction boxes, 4-11/16 sq., with covers",
+        "quantity": "31",
+        "unit": "EA",
+        "unit_price": "12.40",
+        "amount": "384.40",
+        "confidence": 0.9,
+        "evidence": "Junction boxes, 4-11/16 sq., with covers\n31\nEA\n$12.40\n$384.40",
+        "page": 1
+      },
+      {
+        "description": "3/4\" EMT conduit and fittings",
+        "quantity": "410",
+        "unit": "LF",
+        "unit_price": "4.80",
+        "amount": "1968.00",
+        "confidence": 0.9,
+        "evidence": "3/4\" EMT conduit and fittings\n410\nLF\n$4.80\n$1,968.00",
+        "page": 1
+      },
+      {
+        "description": "Fire alarm device relocation",
+        "quantity": "6",
+        "unit": "EA",
+        "unit_price": "88.00",
+        "amount": "528.00",
+        "confidence": 0.9,
+        "evidence": "Fire alarm device relocation\n6\nEA\n$88.00\n$528.00",
+        "page": 1
+      },
+      {
+        "description": "Demolition of abandoned conduit",
+        "quantity": "14",
+        "unit": "HR",
+        "unit_price": "71.00",
+        "amount": "994.00",
+        "confidence": 0.9,
+        "evidence": "Demolition of abandoned conduit\n14\nHR\n$71.00\n$994.00",
+        "page": 1
+      },
+      {
+        "description": "Journeyman electrician labour",
+        "quantity": "96",
+        "unit": "HR",
+        "unit_price": "74.00",
+        "amount": "7104.00",
+        "confidence": 0.9,
+        "evidence": "Journeyman electrician labour\n96\nHR\n$74.00\n$7,104.00",
+        "page": 2
+      },
+      {
+        "description": "Apprentice electrician labour",
+        "quantity": "96",
+        "unit": "HR",
+        "unit_price": "48.50",
+        "amount": "4656.00",
+        "confidence": 0.9,
+        "evidence": "Apprentice electrician labour\n96\nHR\n$48.50\n$4,656.00",
+        "page": 2
+      },
+      {
+        "description": "Panel schedule updates and as-builts",
+        "quantity": "1",
+        "unit": "LS",
+        "unit_price": "650.00",
+        "amount": "650.00",
+        "confidence": 0.9,
+        "evidence": "Panel schedule updates and as-builts\n1\nLS\n$650.00\n$650.00",
+        "page": 2
+      },
+      {
+        "description": "Lift rental, 3 days",
+        "quantity": "3",
+        "unit": "DAY",
+        "unit_price": "185.00",
+        "amount": "555.00",
+        "confidence": 0.9,
+        "evidence": "Lift rental, 3 days\n3\nDAY\n$185.00\n$555.00",
+        "page": 2
+      },
+      {
+        "description": "Permit amendment and inspection fee",
+        "quantity": "1",
+        "unit": "LS",
+        "unit_price": "420.00",
+        "amount": "420.00",
+        "confidence": 0.9,
+        "evidence": "Permit amendment and inspection fee\n1\nLS\n$420.00\n$420.00",
+        "page": 2
+      }
+    ],
+    "subtotal": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "tax": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "total_amount": {
+      "value": "28613.40",
+      "confidence": 0.98,
+      "evidence": "TOTAL CHANGE ORDER AMOUNT\n$28,613.40",
+      "page": 2,
+      "method": "llm+rule"
+    },
+    "currency": {
+      "value": null,
+      "confidence": 0.85,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "schedule_impact_days": {
+      "value": 7,
+      "confidence": 0.98,
+      "evidence": "Schedule impact: 7 calendar days added to the contract time.",
+      "page": 2,
+      "method": "llm+rule"
+    },
+    "status": {
+      "value": "approved",
+      "confidence": 0.85,
+      "evidence": "Status: APPROVED",
+      "page": 1,
+      "method": "llm"
+    },
+    "requested_by": {
+      "value": "Marcus Hale",
+      "confidence": 0.9,
+      "evidence": "Requested by: Marcus Hale (Alder Point)",
+      "page": 2,
+      "method": "llm"
+    },
+    "approved_by": {
+      "value": "Elaine Brandt",
+      "confidence": 0.9,
+      "evidence": "Approved by: Elaine Brandt Date: 19 Mar 2026",
+      "page": 2,
+      "method": "llm"
+    },
+    "signed": {
+      "value": true,
+      "confidence": 0.85,
+      "evidence": "Approved by: Elaine Brandt Date: 19 Mar 2026",
+      "page": 2,
+      "method": "llm"
+    },
+    "references": {
+      "value": [
+        "ASI-12",
+        "RFI-231",
+        "E-4410-07"
+      ],
+      "confidence": 0.9,
+      "evidence": "Related documents: ASI-12, RFI-231, Subcontract E-4410-07",
+      "page": 2,
+      "method": "llm"
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      {
+        "code": "missing_currency",
+        "message": "amounts found but no currency",
+        "fields": [
+          "currency"
+        ]
+      }
+    ]
+  },
+  "needs_review": false,
+  "review_reasons": [],
+  "processing": {
+    "model": "gpt-5-mini",
+    "input_tokens": 2489,
+    "output_tokens": 2840,
+    "latency_ms": 22471,
+    "cost_usd_estimate": 0.006302
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "source_file": "09_crossed_out_amount.png",
+  "pages": 1,
+  "change_order": {
+    "change_order_number": {
+      "value": "CO-118",
+      "confidence": 0.75,
+      "evidence": "Change Order No.: CO-118",
+      "page": 1,
+      "method": "llm"
+    },
+    "project_name": {
+      "value": "Westbrook Plaza Tower B",
+      "confidence": 0.75,
+      "evidence": "Project: Westbrook Plaza Tower B",
+      "page": 1,
+      "method": "llm"
+    },
+    "project_number": {
+      "value": "WP-B-3302",
+      "confidence": 0.75,
+      "evidence": "Project No.: WP-B-3302",
+      "page": 1,
+      "method": "llm"
+    },
+    "contractor": {
+      "value": "Cobalt Glazing Inc.",
+      "confidence": 0.75,
+      "evidence": "Contractor (From):  Cobalt Glazing Inc.",
+      "page": 1,
+      "method": "llm"
+    },
+    "client": {
+      "value": "Arden & Pike Construction",
+      "confidence": 0.75,
+      "evidence": "Owner / GC (To): Arden & Pike Construction",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_issued": {
+      "value": "2026-07-21",
+      "confidence": 0.75,
+      "evidence": "Date Issued: July 21, 2026",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_approved": {
+      "value": null,
+      "confidence": 0.7,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "description": {
+      "value": "Replace a cracked insulated glass unit at grid D-7/D-8 damaged during hoisting, and protect the opening until the new unit is set.",
+      "confidence": 0.75,
+      "evidence": "Replace a cracked insulated glass unit at grid D-7/D-8 damaged during hoisting, and protect the opening until the new unit is set.",
+      "page": 1,
+      "method": "llm"
+    },
+    "reason_category": {
+      "value": "unforeseen_condition",
+      "confidence": 0.75,
+      "evidence": "Replace a cracked insulated glass unit at grid D-7/D-8 damaged during hoisting, and protect the opening until the new unit is set.",
+      "page": 1,
+      "method": "llm"
+    },
+    "line_items": [
+      {
+        "description": "Replace cracked IGU, curtain wall grid D-7/D-8",
+        "quantity": "1",
+        "unit": "LS",
+        "unit_price": null,
+        "amount": "16900.00",
+        "confidence": 0.75,
+        "evidence": "Replace cracked IGU, curtain wall grid D-7/D-8 1 LS - $16,900.00",
+        "page": 1
+      },
+      {
+        "description": "Temporary protection and barricade",
+        "quantity": "1",
+        "unit": "LS",
+        "unit_price": null,
+        "amount": "1200.00",
+        "confidence": 0.75,
+        "evidence": "Temporary protection and barricade 1 LS - $1,200.00",
+        "page": 1
+      }
+    ],
+    "subtotal": {
+      "value": null,
+      "confidence": 0.7,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "tax": {
+      "value": null,
+      "confidence": 0.7,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "total_amount": {
+      "value": "18100.00",
+      "confidence": 0.75,
+      "evidence": "TOTAL CHANGE ORDER AMOUNT $18,100.00",
+      "page": 1,
+      "method": "llm"
+    },
+    "currency": {
+      "value": null,
+      "confidence": 0.7,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "schedule_impact_days": {
+      "value": 3,
+      "confidence": 0.75,
+      "evidence": "Schedule impact: +3 calendar days",
+      "page": 1,
+      "method": "llm"
+    },
+    "status": {
+      "value": "pending",
+      "confidence": 0.75,
+      "evidence": "STATUS: PENDING",
+      "page": 1,
+      "method": "llm"
+    },
+    "requested_by": {
+      "value": "Nadia Fournier",
+      "confidence": 0.75,
+      "evidence": "Requested by: Nadia Fournier",
+      "page": 1,
+      "method": "llm"
+    },
+    "approved_by": {
+      "value": null,
+      "confidence": 0.6,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "signed": {
+      "value": false,
+      "confidence": 0.5,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    },
+    "references": {
+      "value": null,
+      "confidence": 0.6,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": [
+      {
+        "code": "missing_currency",
+        "message": "amounts found but no currency",
+        "fields": [
+          "currency"
+        ]
+      }
+    ]
+  },
+  "needs_review": false,
+  "review_reasons": [],
+  "processing": {
+    "model": "gpt-5-mini",
+    "input_tokens": 4490,
+    "output_tokens": 1574,
+    "latency_ms": 20485,
+    "cost_usd_estimate": 0.00427
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "source_file": "12_cad_currency.pdf",
+  "pages": 1,
+  "change_order": {
+    "change_order_number": {
+      "value": "CO-0478",
+      "confidence": 0.98,
+      "evidence": "Change Order No.: CO-0478",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "project_name": {
+      "value": "Elbow River Seniors Residence",
+      "confidence": 0.9,
+      "evidence": "Project: Elbow River Seniors Residence",
+      "page": 1,
+      "method": "llm"
+    },
+    "project_number": {
+      "value": "ERS-2207",
+      "confidence": 0.98,
+      "evidence": "Project No.: ERS-2207",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "contractor": {
+      "value": "Prairie Sky Mechanical Ltd.",
+      "confidence": 0.9,
+      "evidence": "Contractor (From): Prairie Sky Mechanical Ltd.",
+      "page": 1,
+      "method": "llm"
+    },
+    "client": {
+      "value": "Foothills Construction Management Ltd.",
+      "confidence": 0.9,
+      "evidence": "Owner / GC (To): Foothills Construction Management Ltd.",
+      "page": 1,
+      "method": "llm"
+    },
+    "date_issued": {
+      "value": "2026-04-02",
+      "confidence": 0.98,
+      "evidence": "Date Issued: 2026-04-02",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "date_approved": {
+      "value": "2026-04-09",
+      "confidence": 0.98,
+      "evidence": "Date Approved: 2026-04-09",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "description": {
+      "value": "Add isolation valves and a glycol flush to the hydronic heating loop at the owner's request to simplify future servicing.",
+      "confidence": 0.85,
+      "evidence": "Add isolation valves and a glycol flush to the hydronic heating loop at the owner's request to simplify future servicing.",
+      "page": 1,
+      "method": "llm"
+    },
+    "reason_category": {
+      "value": "owner_request",
+      "confidence": 0.85,
+      "evidence": "Add isolation valves and a glycol flush to the hydronic heating loop at the owner's request to simplify future servicing.",
+      "page": 1,
+      "method": "llm"
+    },
+    "line_items": [
+      {
+        "description": "Supply and install 6 inch hydronic isolation valves",
+        "quantity": "8",
+        "unit": "EA",
+        "unit_price": "640.00",
+        "amount": "5120.00",
+        "confidence": 0.9,
+        "evidence": "Supply and install 6 inch hydronic isolation valves 8 EA $640.00 $5,120.00",
+        "page": 1
+      },
+      {
+        "description": "Glycol fill and system flush",
+        "quantity": "1",
+        "unit": "LS",
+        "unit_price": "3900.00",
+        "amount": "3900.00",
+        "confidence": 0.9,
+        "evidence": "Glycol fill and system flush 1 LS $3,900.00 $3,900.00",
+        "page": 1
+      },
+      {
+        "description": "Pipefitter labour",
+        "quantity": "120",
+        "unit": "HR",
+        "unit_price": "130.00",
+        "amount": "15600.00",
+        "confidence": 0.9,
+        "evidence": "Pipefitter labour 120 HR $130.00 $15,600.00",
+        "page": 1
+      }
+    ],
+    "subtotal": {
+      "value": "24620.00",
+      "confidence": 0.98,
+      "evidence": "Subtotal $24,620.00",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "tax": {
+      "value": "1231.00",
+      "confidence": 0.98,
+      "evidence": "GST (5%) $1,231.00",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "total_amount": {
+      "value": "25851.00",
+      "confidence": 0.98,
+      "evidence": "TOTAL CHANGE ORDER AMOUNT $25,851.00",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "currency": {
+      "value": "CAD",
+      "confidence": 0.98,
+      "evidence": "All amounts in Canadian dollars (CAD)",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "schedule_impact_days": {
+      "value": 4,
+      "confidence": 0.98,
+      "evidence": "Schedule impact: +4 calendar days",
+      "page": 1,
+      "method": "llm+rule"
+    },
+    "status": {
+      "value": "approved",
+      "confidence": 0.85,
+      "evidence": "STATUS: APPROVED",
+      "page": 1,
+      "method": "llm"
+    },
+    "requested_by": {
+      "value": "Aileen MacDonald",
+      "confidence": 0.9,
+      "evidence": "Requested by: Aileen MacDonald",
+      "page": 1,
+      "method": "llm"
+    },
+    "approved_by": {
+      "value": "Gordon Tremblay",
+      "confidence": 0.9,
+      "evidence": "Approved by: Gordon Tremblay Date: 2026-04-09",
+      "page": 1,
+      "method": "llm"
+    },
+    "signed": {
+      "value": true,
+      "confidence": 0.85,
+      "evidence": "G. Tremblay",
+      "page": 1,
+      "method": "llm"
+    },
+    "references": {
+      "value": null,
+      "confidence": 0.75,
+      "evidence": null,
+      "page": null,
+      "method": "llm"
+    }
+  },
+  "validation": {
+    "errors": [],
+    "warnings": []
+  },
+  "needs_review": false,
+  "review_reasons": [],
+  "processing": {
+    "model": "gpt-5-mini",
+    "input_tokens": 2193,
+    "output_tokens": 1807,
+    "latency_ms": 16907,
+    "cost_usd_estimate": 0.004162
+  }
+}
