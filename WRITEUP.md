@@ -71,6 +71,13 @@ Run 2 fields below 100%: `reason_category` 9 of 12 (a subjective pick; the model
 `client`, `requested_by` and `signed` 11 of 12 each, all from the email (sample 03): the model named the addressee as
 the client, the sender as the requester, and read the email sign-off as a signature. The other 14 fields were 12 of 12.
 
+**Repeatability.** I ran the final configuration a second time on the same documents, to see how much a live model
+moves between runs. 1 of 228 values changed (a `reason_category` pick on sample 04 flipped to match my label), giving
+97.8% instead of 97.4%. Line items, every review decision, and the six wrong fields apart from that one were identical, and latency and cost were
+about the same (16.1 s, $0.0044). So a difference of a field or two between runs is noise, and the 97.4% is
+the committed run, not the best of two. An independent recount of the committed results with separate scoring
+code gave the same 222 of 228, and all 147 evidence quotes on text pages are exact substrings of their documents.
+
 **How run 2 differs from run 1, and why the numbers are not a clean test.** After run 1 I corrected the labels and
 changed the prompt using those same 12 documents, so run 2 is a development-set number, not a held-out estimate. Run 1 is the
 closer thing to an untuned result, and is kept in `eval/first_run_results.md`. The changes:

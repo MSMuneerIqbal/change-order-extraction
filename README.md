@@ -101,7 +101,7 @@ Live run with `gpt-5-mini` on the 12 synthetic documents (`eval/results.md`, det
 | Latency / cost per document | about 17 s / $0.0045 (estimate) |
 
 I tuned the prompt and labels on these same 12 documents, so treat the accuracy as a development-set number, not
-a held-out estimate. The 6 remaining wrong fields are judgement calls (`reason_category`, and who the client and
+a held-out estimate. A second identical run gave 97.8% (one subjective field flipped; every review decision was the same). The 6 remaining wrong fields are judgement calls (`reason_category`, and who the client and
 requester are in the email), and the confidence score does not catch them.
 
 ## How confidence works
