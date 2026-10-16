@@ -44,6 +44,7 @@ from co_extract.schema import SCALAR_FIELDS, ChangeOrder, Field, LineItem, Valid
 # --- scoring constants ----------------------------------------------------
 BASE_NON_NULL = 0.80
 EVIDENCE_VERIFIED = 0.10
+EVIDENCE_VERIFIED_UNCHECKED = 0.05  # quote found, but the value (enum, bool, summary) cannot be checked against it
 EVIDENCE_MISSING = -0.30  # a value with no quote at all
 EVIDENCE_NOT_FOUND = -0.45  # quote does not occur in the document
 VALUE_NOT_IN_EVIDENCE = -0.25
@@ -197,7 +198,10 @@ def _score_value(name: str, fld: Field, ctx: ScoringContext) -> float:
     fld.page = page
     if status is EvidenceStatus.verified:
         supported = value_supported(name, fld.value, fld.evidence)
-        score += EVIDENCE_VERIFIED if supported is not False else VALUE_NOT_IN_EVIDENCE
+        if supported is None:  # a real quote does not prove a classification or summary is right
+            score += EVIDENCE_VERIFIED_UNCHECKED
+        else:
+            score += EVIDENCE_VERIFIED if supported else VALUE_NOT_IN_EVIDENCE
     elif status is EvidenceStatus.missing:
         score += EVIDENCE_MISSING
     elif status is EvidenceStatus.not_found:
@@ -222,11 +226,33 @@ def _score_value(name: str, fld: Field, ctx: ScoringContext) -> float:
     return score + _penalty_from_validation(name, ctx.validation)
 
 
+ROW_WINDOW_CHARS = 60  # how far past a row's quote its other cells can sit
+
+
+def _amount_in_row(item: LineItem, doc: LoadedDocument) -> bool:
+    """The row's amount is in its quote, or in the text right after it. PDF text layers
+    put each table cell on its own line, so a model often quotes only the description."""
+    if item.amount is None:
+        return True
+    wanted = {item.amount, -item.amount}
+    quote = item.evidence or ""
+    if wanted & set(find_amounts(quote)):
+        return True
+    page = doc.page(item.page) if item.page is not None else None
+    if page is None:
+        return False
+    haystack = match_form(page.text)
+    where = fuzz.partial_ratio_alignment(match_form(quote), haystack)
+    if where is None:
+        return False
+    return bool(wanted & set(find_amounts(haystack[where.dest_start : where.dest_end + ROW_WINDOW_CHARS])))
+
+
 def _score_line_item(item: LineItem, ctx: ScoringContext) -> float:
     score = BASE_NON_NULL
     status, item.page = check_evidence(item.evidence, item.page, ctx.doc)
     if status is EvidenceStatus.verified:
-        amount_ok = item.amount is None or value_supported("total_amount", item.amount, item.evidence or "")
+        amount_ok = _amount_in_row(item, ctx.doc)
         score += EVIDENCE_VERIFIED if amount_ok else VALUE_NOT_IN_EVIDENCE
     elif status is EvidenceStatus.missing:
         score += EVIDENCE_MISSING

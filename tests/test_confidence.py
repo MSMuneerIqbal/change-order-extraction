@@ -192,3 +192,23 @@ def test_line_item_scoring():
     doc = text_doc("Foreman labour\n16\nHR\n$62.50\n$1,000.00")
     c.score_change_order(co, ctx(doc=doc))
     assert good.confidence > 0.7 > fake.confidence
+
+
+def test_line_item_quoting_only_the_description_is_checked_against_the_row_text_after_it():
+    """PDF text layers put each table cell on its own line; models often quote just the first."""
+    doc = text_doc("Fire caulking at head of wall\n1\nLS\n$480.00\n$480.00\nForeman labour\n16\nHR\n$62.50\n$1,000.00")
+    right = LineItem(description="x", amount=Decimal("1000.00"), evidence="Foreman labour", page=1)
+    wrong = LineItem(description="x", amount=Decimal("999.00"), evidence="Foreman labour", page=1)
+    co = ChangeOrder(**{n: Field() for n in SCALARS}, line_items=[right, wrong])
+    c.score_change_order(co, ctx(doc=doc))
+    assert right.confidence == pytest.approx(c.BASE_NON_NULL + c.EVIDENCE_VERIFIED)
+    assert wrong.confidence == pytest.approx(c.BASE_NON_NULL + c.VALUE_NOT_IN_EVIDENCE)
+
+
+def test_unverifiable_values_get_half_the_evidence_bonus():
+    """A real quote proves the quote exists, not that a classification drawn from it is right."""
+    from co_extract.schema import ReasonCategory
+
+    fld = Field(value=ReasonCategory.owner_request, evidence="Approved by: Robert Okafor", page=1)
+    assert score("reason_category", fld) == pytest.approx(c.BASE_NON_NULL + c.EVIDENCE_VERIFIED_UNCHECKED)
+    assert c.EVIDENCE_VERIFIED_UNCHECKED < c.EVIDENCE_VERIFIED

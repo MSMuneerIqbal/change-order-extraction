@@ -30,6 +30,12 @@ MONEY_TOLERANCE = Decimal("0.01")
 FUZZY_MIN = 85
 ITEM_DESC_MIN = 60
 BUCKETS = ((0.0, 0.5), (0.5, 0.7), (0.7, 0.9), (0.9, 1.0001))
+# Fields where a wrong value costs real money or compliance. A wrong reason_category or
+# currency is a smaller problem, so review is also scored on this narrower set.
+CRITICAL_FIELDS = frozenset(
+    {"change_order_number", "subtotal", "tax", "total_amount", "date_issued", "date_approved",
+     "status", "schedule_impact_days"}
+)  # fmt: skip
 
 KIND = {
     "change_order_number": "id", "project_number": "id",
@@ -129,6 +135,7 @@ class DocScore:
     items: tuple[int, int, int]
     needs_review: bool
     should_review: bool
+    should_review_critical: bool
     wrong_fields: list[str]
     latency_ms: int
     cost_usd: float | None
@@ -143,7 +150,9 @@ def score_document(result: ExtractionResult, label: dict[str, Any]) -> DocScore:
     predicted_items = [i.model_dump(mode="json") for i in co.line_items]
     items = score_line_items(predicted_items, label["line_items"])
     wrong = [n for n, ok in correct.items() if not ok]
-    extraction_wrong = bool(wrong) or items[0] < max(items[1], items[2])
+    items_wrong = items[0] < max(items[1], items[2])
+    extraction_wrong = bool(wrong) or items_wrong
+    critical_wrong = items_wrong or any(n in CRITICAL_FIELDS for n in wrong)
     # A document that is itself inconsistent (missing number, bad arithmetic) should be reviewed too.
     document_flawed = bool(validate(label_change_order(label)).errors)
     return DocScore(
@@ -153,6 +162,7 @@ def score_document(result: ExtractionResult, label: dict[str, Any]) -> DocScore:
         items=items,
         needs_review=result.needs_review,
         should_review=extraction_wrong or document_flawed,
+        should_review_critical=critical_wrong or document_flawed,
         wrong_fields=wrong,
         latency_ms=result.processing.latency_ms,
         cost_usd=result.processing.cost_usd_estimate,
@@ -191,6 +201,8 @@ def build_report(scores: list[DocScore], model: str) -> dict[str, Any]:
     flagged = [s for s in scores if s.needs_review]
     should = [s for s in scores if s.should_review]
     caught = [s for s in should if s.needs_review]
+    should_critical = [s for s in scores if s.should_review_critical]
+    caught_critical = [s for s in should_critical if s.needs_review]
     costs = [s.cost_usd for s in scores if s.cost_usd is not None]
     return {
         "model": model,
@@ -209,6 +221,10 @@ def build_report(scores: list[DocScore], model: str) -> dict[str, Any]:
             "catch_rate": _ratio(len(caught), len(should)),
             "flagged_but_clean": [s.file for s in flagged if not s.should_review],
             "missed": [s.file for s in should if not s.needs_review],
+            "critical_should_review": len(should_critical),
+            "critical_caught": len(caught_critical),
+            "critical_catch_rate": _ratio(len(caught_critical), len(should_critical)),
+            "critical_missed": [s.file for s in should_critical if not s.needs_review],
         },
         "calibration": calibration,
         "avg_latency_ms": round(sum(s.latency_ms for s in scores) / n_docs) if n_docs else None,
@@ -248,6 +264,10 @@ def render_markdown(report: dict[str, Any]) -> str:
         f"- Documents that should be reviewed (wrong extraction, or the document itself is inconsistent): "
         f"{rv['documents_that_should_be_reviewed']}",
         f"- Caught by review: {rv['caught']} ({_pct(rv['catch_rate'])})",
+        f"- Counting only critical fields (CO number, amounts, dates, status, schedule days, line items) "
+        f"or a flawed document: {rv['critical_should_review']} should be reviewed, "
+        f"{rv['critical_caught']} caught ({_pct(rv['critical_catch_rate'])}); "
+        f"missed: {', '.join(rv['critical_missed']) or 'none'}",
         f"- Flagged but extraction was correct and document consistent: {', '.join(rv['flagged_but_clean']) or 'none'}",
         f"- Missed (wrong but not flagged): {', '.join(rv['missed']) or 'none'}", "",
         "## Calibration (field accuracy by confidence bucket)", "",
