@@ -120,6 +120,15 @@ def test_base_url_switches_to_chat_completions(monkeypatch):
     assert type(llm.AgentsExtractor.from_env()._agent.model).__name__ == "OpenAIResponsesModel"
 
 
+def test_empty_base_url_in_env_still_points_at_openai(monkeypatch):
+    """.env.example ships OPENAI_BASE_URL= (empty); the SDK must not pick that up as the URL."""
+    monkeypatch.setattr(llm, "load_dotenv", lambda: None)
+    monkeypatch.setenv("OPENAI_API_KEY", "test-key")
+    monkeypatch.setenv("OPENAI_BASE_URL", "")
+    client = llm.AgentsExtractor.from_env()._agent.model._client
+    assert str(client.base_url).startswith("https://api.openai.com/v1")
+
+
 def test_cost_estimate_uses_price_table_and_env_override(monkeypatch):
     monkeypatch.delenv("LLM_PRICE_IN_PER_M", raising=False)
     monkeypatch.delenv("LLM_PRICE_OUT_PER_M", raising=False)
@@ -129,3 +138,17 @@ def test_cost_estimate_uses_price_table_and_env_override(monkeypatch):
     monkeypatch.setenv("LLM_PRICE_IN_PER_M", "1")
     monkeypatch.setenv("LLM_PRICE_OUT_PER_M", "2")
     assert llm.estimate_cost("some-unknown-model", 1_000_000, 1_000_000) == pytest.approx(3.0)
+
+
+def test_reasoning_effort_defaults_low_for_gpt5_and_can_be_overridden(monkeypatch):
+    monkeypatch.setattr(llm, "load_dotenv", lambda: None)
+    monkeypatch.setenv("OPENAI_API_KEY", "test-key")
+    monkeypatch.setenv("OPENAI_BASE_URL", "")
+    monkeypatch.delenv("LLM_REASONING_EFFORT", raising=False)
+    monkeypatch.setenv("LLM_MODEL", "gpt-5-mini")
+    assert llm.AgentsExtractor.from_env()._agent.model_settings.reasoning.effort == "low"
+    monkeypatch.setenv("LLM_REASONING_EFFORT", "minimal")
+    assert llm.AgentsExtractor.from_env()._agent.model_settings.reasoning.effort == "minimal"
+    monkeypatch.delenv("LLM_REASONING_EFFORT")
+    monkeypatch.setenv("LLM_MODEL", "gpt-4o-mini")
+    assert llm.AgentsExtractor.from_env()._agent.model_settings.reasoning is None

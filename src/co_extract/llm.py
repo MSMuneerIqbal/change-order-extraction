@@ -14,11 +14,12 @@ import os
 from dataclasses import dataclass
 from typing import Any, Protocol
 
-from agents import Agent, OpenAIChatCompletionsModel, OpenAIResponsesModel, RunConfig, Runner
+from agents import Agent, ModelSettings, OpenAIChatCompletionsModel, OpenAIResponsesModel, RunConfig, Runner
 from agents.exceptions import AgentsException
 from agents.models.interface import Model
 from dotenv import load_dotenv
 from openai import AsyncOpenAI, OpenAIError
+from openai.types.shared import Reasoning
 from pydantic import ValidationError
 
 from co_extract.loader import LoadedDocument
@@ -26,6 +27,8 @@ from co_extract.prompts import SYSTEM_PROMPT, USER_INTRO, image_page_label, text
 from co_extract.schema import LLMExtraction
 
 DEFAULT_MODEL = "gpt-5-mini"
+OPENAI_URL = "https://api.openai.com/v1"
+DEFAULT_REASONING_EFFORT = "low"  # extraction is reading, not puzzle solving; "medium" was ~10x slower
 REQUEST_TIMEOUT_S = 120
 
 # USD per million tokens (input, output). Estimates: check your provider's price list.
@@ -89,12 +92,14 @@ def build_input(doc: LoadedDocument) -> list[dict[str, Any]]:
 class AgentsExtractor:
     """Runs a single tool-less Agent whose output type is the extraction schema."""
 
-    def __init__(self, model_name: str, model: Model) -> None:
+    def __init__(self, model_name: str, model: Model, reasoning_effort: str | None = None) -> None:
         self.model = model_name
+        settings = ModelSettings(reasoning=Reasoning(effort=reasoning_effort)) if reasoning_effort else ModelSettings()
         self._agent = Agent(
             name="change-order-extractor",
             instructions=SYSTEM_PROMPT,
             model=model,
+            model_settings=settings,
             output_type=LLMExtraction,
         )
 
@@ -105,11 +110,15 @@ class AgentsExtractor:
         api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
             raise ExtractionError("OPENAI_API_KEY is not set. Copy .env.example to .env and add your key.")
-        base_url = os.getenv("OPENAI_BASE_URL") or None
+        custom_url = os.getenv("OPENAI_BASE_URL") or None
         name = os.getenv("LLM_MODEL") or DEFAULT_MODEL
-        client = AsyncOpenAI(api_key=api_key, base_url=base_url, timeout=REQUEST_TIMEOUT_S)
-        model: Model = OpenAIChatCompletionsModel(name, client) if base_url else OpenAIResponsesModel(name, client)
-        return cls(name, model)
+        # Always pass a URL: with None the SDK re-reads OPENAI_BASE_URL, and .env.example leaves it empty.
+        client = AsyncOpenAI(api_key=api_key, base_url=custom_url or OPENAI_URL, timeout=REQUEST_TIMEOUT_S)
+        model: Model = OpenAIChatCompletionsModel(name, client) if custom_url else OpenAIResponsesModel(name, client)
+        # Reasoning models (gpt-5 family) spend most of their time and cost thinking; keep it low.
+        # LLM_REASONING_EFFORT overrides; other models get no reasoning setting unless it is set.
+        default_effort = DEFAULT_REASONING_EFFORT if name.startswith("gpt-5") and not custom_url else None
+        return cls(name, model, os.getenv("LLM_REASONING_EFFORT") or default_effort)
 
     def extract(self, doc: LoadedDocument) -> LLMResponse:
         try:
