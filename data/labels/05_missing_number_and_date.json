@@ -1,0 +1,44 @@
+{
+  "change_order_number": null,
+  "project_name": "Harbor Point Warehouse",
+  "project_number": "HPW-31",
+  "contractor": "Granite State Excavating LLC",
+  "client": "Delmar Industrial Partners",
+  "date_issued": null,
+  "date_approved": null,
+  "description": "Remove an unmarked abandoned concrete duct bank found at gridline C-4 that was not shown on the civil drawings.",
+  "reason_category": "unforeseen_condition",
+  "subtotal": null,
+  "tax": null,
+  "total_amount": "6806.00",
+  "currency": "USD",
+  "schedule_impact_days": null,
+  "status": "pending",
+  "requested_by": null,
+  "approved_by": null,
+  "signed": false,
+  "line_items": [
+    {
+      "description": "Saw-cut and remove abandoned concrete duct bank at gridline C-4",
+      "quantity": "38",
+      "unit": "LF",
+      "unit_price": "92.00",
+      "amount": "3496.00"
+    },
+    {
+      "description": "Haul-off and disposal",
+      "quantity": "6",
+      "unit": "LD",
+      "unit_price": "310.00",
+      "amount": "1860.00"
+    },
+    {
+      "description": "Backfill and compaction, 95% proctor",
+      "quantity": "1",
+      "unit": "LS",
+      "unit_price": "1450.00",
+      "amount": "1450.00"
+    }
+  ],
+  "references": []
+}

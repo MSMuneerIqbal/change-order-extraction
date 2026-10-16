@@ -1,0 +1,125 @@
+{
+  "change_order_number": "CO-203",
+  "project_name": "Northgate Lofts Phase 2",
+  "project_number": "NG2-4410",
+  "contractor": "Kestrel Electric LLC",
+  "client": "Alder Point Development",
+  "date_issued": "2026-03-11",
+  "date_approved": "2026-03-19",
+  "description": "Electrical rough-in revisions on Levels 2-4 per ASI-12 and RFI-231: relocate circuits, add lighting and controls, update panel schedules.",
+  "reason_category": "design_change",
+  "subtotal": null,
+  "tax": null,
+  "total_amount": "28613.40",
+  "currency": "USD",
+  "schedule_impact_days": 7,
+  "status": "approved",
+  "requested_by": "Marcus Hale",
+  "approved_by": "Elaine Brandt",
+  "signed": true,
+  "line_items": [
+    {
+      "description": "Relocate 20A branch circuits, Level 2 corridor",
+      "quantity": "18",
+      "unit": "EA",
+      "unit_price": "142.00",
+      "amount": "2556.00"
+    },
+    {
+      "description": "1\" EMT conduit and fittings",
+      "quantity": "640",
+      "unit": "LF",
+      "unit_price": "6.25",
+      "amount": "4000.00"
+    },
+    {
+      "description": "#12 THHN copper conductor",
+      "quantity": "1900",
+      "unit": "LF",
+      "unit_price": "0.85",
+      "amount": "1615.00"
+    },
+    {
+      "description": "Recessed LED troffer, 2x4, 40W",
+      "quantity": "22",
+      "unit": "EA",
+      "unit_price": "118.50",
+      "amount": "2607.00"
+    },
+    {
+      "description": "Occupancy sensors, ceiling mount",
+      "quantity": "9",
+      "unit": "EA",
+      "unit_price": "64.00",
+      "amount": "576.00"
+    },
+    {
+      "description": "Junction boxes, 4-11/16 sq., with covers",
+      "quantity": "31",
+      "unit": "EA",
+      "unit_price": "12.40",
+      "amount": "384.40"
+    },
+    {
+      "description": "3/4\" EMT conduit and fittings",
+      "quantity": "410",
+      "unit": "LF",
+      "unit_price": "4.80",
+      "amount": "1968.00"
+    },
+    {
+      "description": "Fire alarm device relocation",
+      "quantity": "6",
+      "unit": "EA",
+      "unit_price": "88.00",
+      "amount": "528.00"
+    },
+    {
+      "description": "Demolition of abandoned conduit",
+      "quantity": "14",
+      "unit": "HR",
+      "unit_price": "71.00",
+      "amount": "994.00"
+    },
+    {
+      "description": "Journeyman electrician labour",
+      "quantity": "96",
+      "unit": "HR",
+      "unit_price": "74.00",
+      "amount": "7104.00"
+    },
+    {
+      "description": "Apprentice electrician labour",
+      "quantity": "96",
+      "unit": "HR",
+      "unit_price": "48.50",
+      "amount": "4656.00"
+    },
+    {
+      "description": "Panel schedule updates and as-builts",
+      "quantity": "1",
+      "unit": "LS",
+      "unit_price": "650.00",
+      "amount": "650.00"
+    },
+    {
+      "description": "Lift rental, 3 days",
+      "quantity": "3",
+      "unit": "DAY",
+      "unit_price": "185.00",
+      "amount": "555.00"
+    },
+    {
+      "description": "Permit amendment and inspection fee",
+      "quantity": "1",
+      "unit": "LS",
+      "unit_price": "420.00",
+      "amount": "420.00"
+    }
+  ],
+  "references": [
+    "ASI-12",
+    "RFI-231",
+    "E-4410-07"
+  ]
+}

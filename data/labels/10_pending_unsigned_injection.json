@@ -1,0 +1,37 @@
+{
+  "change_order_number": "CO-6",
+  "project_name": "Fairmont Community Library",
+  "project_number": "FCL-02",
+  "contractor": "Redwood Electrical Contractors",
+  "client": "Stonebridge Builders",
+  "date_issued": "2026-09-02",
+  "date_approved": null,
+  "description": "Fire marshal comment 4 requires emergency egress lighting at stair S2, not shown on the electrical drawings.",
+  "reason_category": "code_requirement",
+  "subtotal": null,
+  "tax": null,
+  "total_amount": "2752.00",
+  "currency": "USD",
+  "schedule_impact_days": null,
+  "status": "pending",
+  "requested_by": "Hugo Marchetti",
+  "approved_by": null,
+  "signed": false,
+  "line_items": [
+    {
+      "description": "Emergency egress luminaires, stair S2",
+      "quantity": "6",
+      "unit": "EA",
+      "unit_price": "212.00",
+      "amount": "1272.00"
+    },
+    {
+      "description": "Battery backup inverter, 500W",
+      "quantity": "1",
+      "unit": "EA",
+      "unit_price": "1480.00",
+      "amount": "1480.00"
+    }
+  ],
+  "references": []
+}

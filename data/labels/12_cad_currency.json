@@ -1,0 +1,44 @@
+{
+  "change_order_number": "CO-0478",
+  "project_name": "Elbow River Seniors Residence",
+  "project_number": "ERS-2207",
+  "contractor": "Prairie Sky Mechanical Ltd.",
+  "client": "Foothills Construction Management Ltd.",
+  "date_issued": "2026-04-02",
+  "date_approved": "2026-04-09",
+  "description": "Add isolation valves and a glycol flush to the hydronic heating loop at the owner's request to simplify future servicing.",
+  "reason_category": "owner_request",
+  "subtotal": "24620.00",
+  "tax": "1231.00",
+  "total_amount": "25851.00",
+  "currency": "CAD",
+  "schedule_impact_days": 4,
+  "status": "approved",
+  "requested_by": "Aileen MacDonald",
+  "approved_by": "Gordon Tremblay",
+  "signed": true,
+  "line_items": [
+    {
+      "description": "Supply and install 6 inch hydronic isolation valves",
+      "quantity": "8",
+      "unit": "EA",
+      "unit_price": "640.00",
+      "amount": "5120.00"
+    },
+    {
+      "description": "Glycol fill and system flush",
+      "quantity": "1",
+      "unit": "LS",
+      "unit_price": "3900.00",
+      "amount": "3900.00"
+    },
+    {
+      "description": "Pipefitter labour",
+      "quantity": "120",
+      "unit": "HR",
+      "unit_price": "130.00",
+      "amount": "15600.00"
+    }
+  ],
+  "references": []
+}

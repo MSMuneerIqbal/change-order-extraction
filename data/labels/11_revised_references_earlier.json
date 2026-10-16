@@ -1,0 +1,48 @@
+{
+  "change_order_number": "CO-017R1",
+  "project_name": "Quarry Hill Parking Structure",
+  "project_number": "QH-PS-12",
+  "contractor": "Pioneer Concrete Works Inc.",
+  "client": "Vantage Point Constructors",
+  "date_issued": "2026-01-29",
+  "date_approved": "2026-02-04",
+  "description": "Revised pricing for the added grade beam at the ramp, superseding CO-017 dated January 22, 2026, after RFI-142 changed the beam depth.",
+  "reason_category": "design_change",
+  "subtotal": "11808.00",
+  "tax": null,
+  "total_amount": "11808.00",
+  "currency": "USD",
+  "schedule_impact_days": 4,
+  "status": "approved",
+  "requested_by": "Isaac Tolliver",
+  "approved_by": "Maureen Castellano",
+  "signed": true,
+  "line_items": [
+    {
+      "description": "Footing concrete, 4000 psi, revised pour",
+      "quantity": "38",
+      "unit": "CY",
+      "unit_price": "186.00",
+      "amount": "7068.00"
+    },
+    {
+      "description": "Additional rebar, #5 at grade beam",
+      "quantity": "2.4",
+      "unit": "TON",
+      "unit_price": "1650.00",
+      "amount": "3960.00"
+    },
+    {
+      "description": "Pump truck, half day",
+      "quantity": "1",
+      "unit": "EA",
+      "unit_price": "780.00",
+      "amount": "780.00"
+    }
+  ],
+  "references": [
+    "CO-017",
+    "RFI-142",
+    "PO-88213"
+  ]
+}

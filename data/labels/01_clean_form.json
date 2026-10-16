@@ -1,0 +1,54 @@
+{
+  "change_order_number": "CO-014",
+  "project_name": "Maple Street Medical Office Build-out",
+  "project_number": "2025-118",
+  "contractor": "Tri-County Drywall Inc.",
+  "client": "Orchard Ridge Construction",
+  "date_issued": "2026-02-10",
+  "date_approved": "2026-02-17",
+  "description": "Add a 1-hour fire-rated partition at corridor 2B per RFI-087: furnish and install rated gypsum board and framing both sides.",
+  "reason_category": "design_change",
+  "subtotal": "5256.00",
+  "tax": "433.62",
+  "total_amount": "5689.62",
+  "currency": "USD",
+  "schedule_impact_days": 3,
+  "status": "approved",
+  "requested_by": "Dana Whitfield",
+  "approved_by": "Robert Okafor",
+  "signed": true,
+  "line_items": [
+    {
+      "description": "5/8\" Type X gypsum board, both sides of new partition",
+      "quantity": "640",
+      "unit": "SF",
+      "unit_price": "3.85",
+      "amount": "2464.00"
+    },
+    {
+      "description": "Metal stud framing 3-5/8\", 20 ga",
+      "quantity": "320",
+      "unit": "LF",
+      "unit_price": "4.10",
+      "amount": "1312.00"
+    },
+    {
+      "description": "Fire caulking at head of wall",
+      "quantity": "1",
+      "unit": "LS",
+      "unit_price": "480.00",
+      "amount": "480.00"
+    },
+    {
+      "description": "Foreman labour",
+      "quantity": "16",
+      "unit": "HR",
+      "unit_price": "62.50",
+      "amount": "1000.00"
+    }
+  ],
+  "references": [
+    "RFI-087",
+    "SC-2025-044"
+  ]
+}

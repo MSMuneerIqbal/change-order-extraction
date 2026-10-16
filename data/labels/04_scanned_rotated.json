@@ -1,0 +1,46 @@
+{
+  "change_order_number": "CO-31",
+  "project_name": "Cedar Point Elementary Addition",
+  "project_number": "CP-0925",
+  "contractor": "Bluebird Mechanical Ltd.",
+  "client": "Hale & Whitcomb Builders",
+  "date_issued": "2026-08-05",
+  "date_approved": "2026-08-12",
+  "description": "Add isolation valves and insulation at AHU-3 so the unit can be serviced without shutting down the chilled water loop.",
+  "reason_category": "owner_request",
+  "subtotal": "5051.00",
+  "tax": "303.06",
+  "total_amount": "5354.06",
+  "currency": "USD",
+  "schedule_impact_days": 0,
+  "status": "approved",
+  "requested_by": "Tom Verhoeven",
+  "approved_by": "Carla Mbeki",
+  "signed": true,
+  "line_items": [
+    {
+      "description": "Add isolation valves at AHU-3 supply and return",
+      "quantity": "4",
+      "unit": "EA",
+      "unit_price": "385.00",
+      "amount": "1540.00"
+    },
+    {
+      "description": "Pipe insulation, 2\" chilled water",
+      "quantity": "85",
+      "unit": "LF",
+      "unit_price": "14.20",
+      "amount": "1207.00"
+    },
+    {
+      "description": "Pipefitter labour",
+      "quantity": "24",
+      "unit": "HR",
+      "unit_price": "96.00",
+      "amount": "2304.00"
+    }
+  ],
+  "references": [
+    "RFI-066"
+  ]
+}

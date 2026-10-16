@@ -1,0 +1,46 @@
+{
+  "change_order_number": "7",
+  "project_name": "Riverside Data Annex",
+  "project_number": null,
+  "contractor": "Kestrel Electric LLC",
+  "client": "Beacon Hill Developers",
+  "date_issued": "2026-03-03",
+  "date_approved": null,
+  "description": "Add six dedicated 20A circuits and a 100A subpanel for the new server room, including permit and inspection fees.",
+  "reason_category": "owner_request",
+  "subtotal": null,
+  "tax": null,
+  "total_amount": "9840.00",
+  "currency": "USD",
+  "schedule_impact_days": 2,
+  "status": "pending",
+  "requested_by": "Marcus Hale",
+  "approved_by": null,
+  "signed": false,
+  "line_items": [
+    {
+      "description": "Six dedicated 20A circuits (materials and labour)",
+      "quantity": null,
+      "unit": null,
+      "unit_price": null,
+      "amount": "6300.00"
+    },
+    {
+      "description": "100A subpanel",
+      "quantity": null,
+      "unit": null,
+      "unit_price": null,
+      "amount": "2240.00"
+    },
+    {
+      "description": "Permit and inspection fees",
+      "quantity": null,
+      "unit": null,
+      "unit_price": null,
+      "amount": "1300.00"
+    }
+  ],
+  "references": [
+    "RFI-318"
+  ]
+}

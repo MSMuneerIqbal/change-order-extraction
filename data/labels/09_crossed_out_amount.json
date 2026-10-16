@@ -1,0 +1,37 @@
+{
+  "change_order_number": "CO-118",
+  "project_name": "Westbrook Plaza Tower B",
+  "project_number": "WP-B-3302",
+  "contractor": "Cobalt Glazing Inc.",
+  "client": "Arden & Pike Construction",
+  "date_issued": "2026-07-21",
+  "date_approved": null,
+  "description": "Replace a cracked insulated glass unit at grid D-7/D-8 damaged during hoisting, and protect the opening until the new unit is set.",
+  "reason_category": "other",
+  "subtotal": null,
+  "tax": null,
+  "total_amount": "18100.00",
+  "currency": "USD",
+  "schedule_impact_days": 3,
+  "status": "pending",
+  "requested_by": "Nadia Fournier",
+  "approved_by": null,
+  "signed": false,
+  "line_items": [
+    {
+      "description": "Replace cracked IGU, curtain wall grid D-7/D-8",
+      "quantity": "1",
+      "unit": "LS",
+      "unit_price": null,
+      "amount": "16900.00"
+    },
+    {
+      "description": "Temporary protection and barricade",
+      "quantity": "1",
+      "unit": "LS",
+      "unit_price": null,
+      "amount": "1200.00"
+    }
+  ],
+  "references": []
+}

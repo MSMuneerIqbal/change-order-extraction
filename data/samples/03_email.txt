@@ -1,0 +1,22 @@
+From: Priya Raman <praman@kestrel-electric.example>
+To: Marcus Hale <mhale@beaconhill.example>
+Cc: accounting@kestrel-electric.example
+Date: Tue, 3 Mar 2026 16:42:10 -0600
+Subject: RE: Riverside Data Annex - server room power
+
+Hi Marcus,
+
+Thanks for the call this morning. As you asked, we will add six dedicated 20A circuits
+and a new 100A subpanel for the server room (see RFI-318 for the layout). Please treat
+this email as Change Order No. 7 for the Riverside Data Annex job.
+
+Pricing as of March 3, 2026: the six circuits come to $6,300 for materials and labour,
+the subpanel is $2,240, and the permit and inspection fees are $1,300. That brings the
+change to $9,840 in total, no tax since the owner is exempt. We would need two extra
+working days on the schedule to fit this around the drywall crew.
+
+We have not started the work. Can you confirm by Friday so we can order the gear?
+
+Thanks,
+Priya Raman
+Project Manager, Kestrel Electric LLC

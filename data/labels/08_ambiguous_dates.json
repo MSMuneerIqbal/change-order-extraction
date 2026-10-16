@@ -1,0 +1,37 @@
+{
+  "change_order_number": "CO-22",
+  "project_name": "Bayou Crossing Retail Center",
+  "project_number": "BCRC-9",
+  "contractor": "Northline Fire Protection LLC",
+  "client": "Gulf Ridge Builders",
+  "date_issued": "2026-03-04",
+  "date_approved": "2026-03-12",
+  "description": "Tenant bay 3 layout changed; add sprinkler heads and revise the hydraulic calculations and shop drawings.",
+  "reason_category": "design_change",
+  "subtotal": null,
+  "tax": null,
+  "total_amount": "2602.00",
+  "currency": "USD",
+  "schedule_impact_days": 0,
+  "status": "approved",
+  "requested_by": "Sam Okonkwo",
+  "approved_by": "Linda Tran",
+  "signed": true,
+  "line_items": [
+    {
+      "description": "Add 14 sprinkler heads, tenant bay 3",
+      "quantity": "14",
+      "unit": "EA",
+      "unit_price": "118.00",
+      "amount": "1652.00"
+    },
+    {
+      "description": "Hydraulic recalculation and shop drawings",
+      "quantity": "1",
+      "unit": "LS",
+      "unit_price": "950.00",
+      "amount": "950.00"
+    }
+  ],
+  "references": []
+}

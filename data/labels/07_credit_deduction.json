@@ -1,0 +1,37 @@
+{
+  "change_order_number": "CO-009",
+  "project_name": "Lakeview Credit Union Branch",
+  "project_number": "LCU-204",
+  "contractor": "Lakeshore Tile & Stone Co.",
+  "client": "Pinecrest Construction",
+  "date_issued": "2026-05-14",
+  "date_approved": "2026-05-20",
+  "description": "Owner will supply and install lobby tile under a separate contract; delete the subcontract scope and credit the contract sum.",
+  "reason_category": "owner_request",
+  "subtotal": "-4200.00",
+  "tax": null,
+  "total_amount": "-4200.00",
+  "currency": "USD",
+  "schedule_impact_days": -2,
+  "status": "approved",
+  "requested_by": "Janet Ostrowski",
+  "approved_by": "Peter Lindqvist",
+  "signed": true,
+  "line_items": [
+    {
+      "description": "Delete owner-furnished porcelain tile, lobby floor (credit)",
+      "quantity": "1",
+      "unit": "LS",
+      "unit_price": "-3200.00",
+      "amount": "-3200.00"
+    },
+    {
+      "description": "Delete tile base and transition strips (credit)",
+      "quantity": "1",
+      "unit": "LS",
+      "unit_price": "-1000.00",
+      "amount": "-1000.00"
+    }
+  ],
+  "references": []
+}

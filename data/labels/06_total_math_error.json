@@ -1,0 +1,44 @@
+{
+  "change_order_number": "CO-052",
+  "project_name": "Eastgate Distribution Center",
+  "project_number": "EDC-77",
+  "contractor": "Summit Roofing & Sheet Metal Inc.",
+  "client": "Northfield GC Services",
+  "date_issued": "2026-06-03",
+  "date_approved": null,
+  "description": "Roof drawings omitted flashing at the rooftop unit curbs; replace damaged membrane and add crickets and counterflashing.",
+  "reason_category": "error_omission",
+  "subtotal": "14185.00",
+  "tax": "992.95",
+  "total_amount": "15117.95",
+  "currency": "USD",
+  "schedule_impact_days": 5,
+  "status": "pending",
+  "requested_by": "Wes Kowalczyk",
+  "approved_by": null,
+  "signed": false,
+  "line_items": [
+    {
+      "description": "Replace damaged TPO membrane at RTU curbs",
+      "quantity": "640",
+      "unit": "SF",
+      "unit_price": "11.50",
+      "amount": "7360.00"
+    },
+    {
+      "description": "Tapered insulation crickets",
+      "quantity": "12",
+      "unit": "EA",
+      "unit_price": "245.00",
+      "amount": "2940.00"
+    },
+    {
+      "description": "Sheet metal counterflashing",
+      "quantity": "210",
+      "unit": "LF",
+      "unit_price": "18.50",
+      "amount": "3885.00"
+    }
+  ],
+  "references": []
+}
