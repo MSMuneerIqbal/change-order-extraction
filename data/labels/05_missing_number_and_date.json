@@ -11,7 +11,7 @@
   "subtotal": null,
   "tax": null,
   "total_amount": "6806.00",
-  "currency": "USD",
+  "currency": null,
   "schedule_impact_days": null,
   "status": "pending",
   "requested_by": null,

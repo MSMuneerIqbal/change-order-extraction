@@ -11,7 +11,7 @@
   "subtotal": "11808.00",
   "tax": null,
   "total_amount": "11808.00",
-  "currency": "USD",
+  "currency": null,
   "schedule_impact_days": 4,
   "status": "approved",
   "requested_by": "Isaac Tolliver",

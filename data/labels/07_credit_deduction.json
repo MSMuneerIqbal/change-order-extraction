@@ -11,7 +11,7 @@
   "subtotal": "-4200.00",
   "tax": null,
   "total_amount": "-4200.00",
-  "currency": "USD",
+  "currency": null,
   "schedule_impact_days": -2,
   "status": "approved",
   "requested_by": "Janet Ostrowski",

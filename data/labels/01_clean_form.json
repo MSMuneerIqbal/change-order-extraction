@@ -11,7 +11,7 @@
   "subtotal": "5256.00",
   "tax": "433.62",
   "total_amount": "5689.62",
-  "currency": "USD",
+  "currency": null,
   "schedule_impact_days": 3,
   "status": "approved",
   "requested_by": "Dana Whitfield",

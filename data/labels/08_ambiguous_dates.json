@@ -11,7 +11,7 @@
   "subtotal": null,
   "tax": null,
   "total_amount": "2602.00",
-  "currency": "USD",
+  "currency": null,
   "schedule_impact_days": 0,
   "status": "approved",
   "requested_by": "Sam Okonkwo",

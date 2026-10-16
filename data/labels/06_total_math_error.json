@@ -11,7 +11,7 @@
   "subtotal": "14185.00",
   "tax": "992.95",
   "total_amount": "15117.95",
-  "currency": "USD",
+  "currency": null,
   "schedule_impact_days": 5,
   "status": "pending",
   "requested_by": "Wes Kowalczyk",

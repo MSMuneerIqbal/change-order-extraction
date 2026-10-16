@@ -408,7 +408,7 @@ def sample_01() -> Sample:
         date_approved="2026-02-17",
         description="Add a 1-hour fire-rated partition at corridor 2B per RFI-087: furnish and install rated gypsum board and framing both sides.",
         reason_category="design_change", line_items=items, subtotal=str(d(sub)), tax=str(tax),
-        total_amount=str(d(sub + tax)), currency="USD", schedule_impact_days=3, status="approved",
+        total_amount=str(d(sub + tax)), currency=None, schedule_impact_days=3, status="approved",
         requested_by="Dana Whitfield", approved_by="Robert Okafor", signed=True,
         references=["RFI-087", "SC-2025-044"],
     )  # fmt: skip
@@ -448,7 +448,7 @@ def sample_02() -> Sample:
         contractor="Kestrel Electric LLC", client="Alder Point Development", date_issued="2026-03-11",
         date_approved="2026-03-19",
         description="Electrical rough-in revisions on Levels 2-4 per ASI-12 and RFI-231: relocate circuits, add lighting and controls, update panel schedules.",
-        reason_category="design_change", line_items=items, total_amount=str(total), currency="USD",
+        reason_category="design_change", line_items=items, total_amount=str(total), currency=None,
         schedule_impact_days=7, status="approved", requested_by="Marcus Hale", approved_by="Elaine Brandt",
         signed=True, references=["ASI-12", "RFI-231", "E-4410-07"],
     )  # fmt: skip
@@ -466,8 +466,8 @@ def sample_02() -> Sample:
 def sample_03() -> Sample:
     t = truth(
         change_order_number="7", project_name="Riverside Data Annex", project_number=None,
-        contractor="Kestrel Electric LLC", client="Beacon Hill Developers", date_issued="2026-03-03",
-        description="Add six dedicated 20A circuits and a 100A subpanel for the new server room, including permit and inspection fees.",
+        contractor="Kestrel Electric LLC", client=None, date_issued="2026-03-03",
+        description="we will add six dedicated 20A circuits and a new 100A subpanel for the server room",
         reason_category="owner_request",
         line_items=[
             {"description": "Six dedicated 20A circuits (materials and labour)", "quantity": None, "unit": None,
@@ -476,7 +476,7 @@ def sample_03() -> Sample:
             {"description": "Permit and inspection fees", "quantity": None, "unit": None, "unit_price": None,
              "amount": "1300.00"},
         ],
-        total_amount="9840.00", currency="USD", schedule_impact_days=2, status="pending", requested_by="Marcus Hale",
+        total_amount="9840.00", currency=None, schedule_impact_days=2, status="pending", requested_by="Marcus Hale",
         signed=False, references=["RFI-318"],
     )  # fmt: skip
     body = """\
@@ -520,7 +520,7 @@ def sample_04() -> Sample:
         date_approved="2026-08-12",
         description="Add isolation valves and insulation at AHU-3 so the unit can be serviced without shutting down the chilled water loop.",
         reason_category="owner_request", line_items=items, subtotal=str(d(sub)), tax=str(tax),
-        total_amount=str(d(sub + tax)), currency="USD", schedule_impact_days=0, status="approved",
+        total_amount=str(d(sub + tax)), currency=None, schedule_impact_days=0, status="approved",
         requested_by="Tom Verhoeven", approved_by="Carla Mbeki", signed=True, references=["RFI-066"],
     )  # fmt: skip
     disp = Display(
@@ -551,7 +551,7 @@ def sample_05() -> Sample:
         project_name="Harbor Point Warehouse", project_number="HPW-31", contractor="Granite State Excavating LLC",
         client="Delmar Industrial Partners",
         description="Remove an unmarked abandoned concrete duct bank found at gridline C-4 that was not shown on the civil drawings.",
-        reason_category="unforeseen_condition", line_items=items, total_amount=str(total), currency="USD",
+        reason_category="unforeseen_condition", line_items=items, total_amount=str(total), currency=None,
         status="pending", signed=False,
     )  # fmt: skip
     disp = Display(
@@ -576,7 +576,7 @@ def sample_06() -> Sample:
         contractor="Summit Roofing & Sheet Metal Inc.", client="Northfield GC Services", date_issued="2026-06-03",
         description="Roof drawings omitted flashing at the rooftop unit curbs; replace damaged membrane and add crickets and counterflashing.",
         reason_category="error_omission", line_items=items, subtotal=str(d(sub)), tax=str(tax),
-        total_amount=str(printed_total), currency="USD", schedule_impact_days=5, status="pending",
+        total_amount=str(printed_total), currency=None, schedule_impact_days=5, status="pending",
         requested_by="Wes Kowalczyk", signed=False,
     )  # fmt: skip
     disp = Display(
@@ -600,7 +600,7 @@ def sample_07() -> Sample:
         date_approved="2026-05-20",
         description="Owner will supply and install lobby tile under a separate contract; delete the subcontract scope and credit the contract sum.",
         reason_category="owner_request", line_items=items, subtotal=str(total), total_amount=str(total),
-        currency="USD", schedule_impact_days=-2, status="approved", requested_by="Janet Ostrowski",
+        currency=None, schedule_impact_days=-2, status="approved", requested_by="Janet Ostrowski",
         approved_by="Peter Lindqvist", signed=True,
     )  # fmt: skip
     disp = Display(
@@ -625,7 +625,7 @@ def sample_08() -> Sample:
         contractor="Northline Fire Protection LLC", client="Gulf Ridge Builders", date_issued="2026-03-04",
         date_approved="2026-03-12",
         description="Tenant bay 3 layout changed; add sprinkler heads and revise the hydraulic calculations and shop drawings.",
-        reason_category="design_change", line_items=items, total_amount=str(total), currency="USD",
+        reason_category="design_change", line_items=items, total_amount=str(total), currency=None,
         schedule_impact_days=0, status="approved", requested_by="Sam Okonkwo", approved_by="Linda Tran", signed=True,
     )  # fmt: skip
     disp = Display(
@@ -649,7 +649,7 @@ def sample_09() -> Sample:
         change_order_number="CO-118", project_name="Westbrook Plaza Tower B", project_number="WP-B-3302",
         contractor="Cobalt Glazing Inc.", client="Arden & Pike Construction", date_issued="2026-07-21",
         description="Replace a cracked insulated glass unit at grid D-7/D-8 damaged during hoisting, and protect the opening until the new unit is set.",
-        reason_category="other", line_items=items, total_amount=str(total), currency="USD", schedule_impact_days=3,
+        reason_category="other", line_items=items, total_amount=str(total), currency=None, schedule_impact_days=3,
         status="pending", requested_by="Nadia Fournier", signed=False,
     )  # fmt: skip
     rows = [
@@ -682,7 +682,7 @@ def sample_10() -> Sample:
         change_order_number="CO-6", project_name="Fairmont Community Library", project_number="FCL-02",
         contractor="Redwood Electrical Contractors", client="Stonebridge Builders", date_issued="2026-09-02",
         description="Fire marshal comment 4 requires emergency egress lighting at stair S2, not shown on the electrical drawings.",
-        reason_category="code_requirement", line_items=items, total_amount=str(total), currency="USD",
+        reason_category="code_requirement", line_items=items, total_amount=str(total), currency=None,
         schedule_impact_days=None, status="pending", requested_by="Hugo Marchetti", signed=False,
     )  # fmt: skip
     disp = Display(
@@ -707,7 +707,7 @@ def sample_11() -> Sample:
         date_approved="2026-02-04",
         description="Revised pricing for the added grade beam at the ramp, superseding CO-017 dated January 22, 2026, after RFI-142 changed the beam depth.",
         reason_category="design_change", line_items=items, subtotal=str(total), total_amount=str(total),
-        currency="USD", schedule_impact_days=4, status="approved", requested_by="Isaac Tolliver",
+        currency=None, schedule_impact_days=4, status="approved", requested_by="Isaac Tolliver",
         approved_by="Maureen Castellano", signed=True, references=["CO-017", "RFI-142", "PO-88213"],
     )  # fmt: skip
     disp = Display(

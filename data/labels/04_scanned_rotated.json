@@ -11,7 +11,7 @@
   "subtotal": "5051.00",
   "tax": "303.06",
   "total_amount": "5354.06",
-  "currency": "USD",
+  "currency": null,
   "schedule_impact_days": 0,
   "status": "approved",
   "requested_by": "Tom Verhoeven",
