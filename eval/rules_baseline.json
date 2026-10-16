@@ -1,0 +1,65 @@
+{
+  "change_order_number": {
+    "found": 9,
+    "correct": 9,
+    "labelled": 11,
+    "precision": 1.0,
+    "recall": 0.818
+  },
+  "currency": {
+    "found": 1,
+    "correct": 1,
+    "labelled": 12,
+    "precision": 1.0,
+    "recall": 0.083
+  },
+  "date_approved": {
+    "found": 6,
+    "correct": 6,
+    "labelled": 7,
+    "precision": 1.0,
+    "recall": 0.857
+  },
+  "date_issued": {
+    "found": 6,
+    "correct": 6,
+    "labelled": 11,
+    "precision": 1.0,
+    "recall": 0.545
+  },
+  "project_number": {
+    "found": 6,
+    "correct": 6,
+    "labelled": 11,
+    "precision": 1.0,
+    "recall": 0.545
+  },
+  "schedule_impact_days": {
+    "found": 7,
+    "correct": 7,
+    "labelled": 10,
+    "precision": 1.0,
+    "recall": 0.7
+  },
+  "subtotal": {
+    "found": 5,
+    "correct": 5,
+    "labelled": 6,
+    "precision": 1.0,
+    "recall": 0.833
+  },
+  "tax": {
+    "found": 3,
+    "correct": 3,
+    "labelled": 4,
+    "precision": 1.0,
+    "recall": 0.75
+  },
+  "total_amount": {
+    "found": 9,
+    "correct": 9,
+    "labelled": 12,
+    "precision": 1.0,
+    "recall": 0.75
+  }
+}
