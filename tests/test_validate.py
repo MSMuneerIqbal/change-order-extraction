@@ -95,3 +95,18 @@ def test_negative_total_is_allowed_but_warns():
 
 def test_missing_currency_warns_when_amounts_exist():
     assert "missing_currency" in codes(validate(make(currency=None), TODAY).warnings)
+
+
+def test_rows_without_an_amount_are_checked_not_skipped():
+    """A row read as unit price only (lump sum) leaves amount empty; the subtotal must still be checked."""
+    items = [LineItem(amount=Decimal("1416.00")), LineItem(unit_price=Decimal("9640.00")), LineItem(unit_price=Decimal("780.00"))]
+    result = validate(make(items, subtotal=Decimal("11836.00"), total_amount=Decimal("11836.00")), TODAY)
+    assert "line_sum_mismatch" in codes(result.errors)
+    assert "2 line item(s) have no amount" in result.errors[0].message
+
+
+def test_scope_list_with_no_prices_is_fine_and_note_rows_do_not_break_a_matching_sum():
+    scope = [LineItem(description="Demo"), LineItem(description="Patch")]
+    assert validate(make(scope, total_amount=Decimal("500.00")), TODAY).errors == []
+    priced_plus_note = [LineItem(amount=Decimal("100.00")), LineItem(description="Included at no charge")]
+    assert validate(make(priced_plus_note, total_amount=Decimal("100.00")), TODAY).errors == []

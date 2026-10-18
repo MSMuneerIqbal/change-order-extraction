@@ -33,8 +33,10 @@ def _check_required(co: ChangeOrder, errors: list[Issue]) -> None:
 
 def _check_amounts(co: ChangeOrder, errors: list[Issue]) -> None:
     subtotal, tax, total = co.subtotal.value, co.tax.value, co.total_amount.value
-    amounts = [item.amount for item in co.line_items]
-    if amounts and all(a is not None for a in amounts):
+    amounts = [item.amount for item in co.line_items if item.amount is not None]
+    missing = len(co.line_items) - len(amounts)
+    # A scope list with no prices at all is fine; rows with a price and rows without is not.
+    if amounts:
         line_sum = sum(amounts, Decimal("0"))
         if subtotal is not None:
             target, target_field = subtotal, "subtotal"
@@ -46,7 +48,8 @@ def _check_amounts(co: ChangeOrder, errors: list[Issue]) -> None:
             errors.append(
                 Issue(
                     code="line_sum_mismatch",
-                    message=f"line items add up to {line_sum}, document says {target}",
+                    message=f"line items add up to {line_sum}, document says {target}"
+                    + (f" ({missing} line item(s) have no amount)" if missing else ""),
                     fields=["line_items", target_field],
                 )
             )

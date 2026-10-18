@@ -230,6 +230,22 @@ def ids_match(a: str, b: str) -> bool:
     return alnum(a) == alnum(b) or (bool(strip(a)) and strip(a) == strip(b))
 
 
+_OTHER_CO_CONTEXT = re.compile(r"previous|prior|supersede|revises|replaces|reference|\bref\b", re.IGNORECASE)
+
+
+def find_change_order_numbers(doc: LoadedDocument) -> list[str]:
+    """Distinct numbers printed as 'Change Order No. X' headings, skipping lines that only
+    refer to another change order. More than one means several change orders in one file."""
+    numbers: list[str] = []
+    for _, line in _lines(doc):
+        m = _CO_LABEL.search(line)
+        if m and not _OTHER_CO_CONTEXT.search(line):
+            number = m.group("id").strip(" .,;:")
+            if not any(ids_match(number, seen) for seen in numbers):
+                numbers.append(number)
+    return numbers
+
+
 def find_injection_phrases(doc: LoadedDocument) -> list[str]:
     """Lines that look like instructions aimed at an AI. Documents are data only."""
     return [_evidence(line) for _, line in _lines(doc) if _INJECTION.search(line)]

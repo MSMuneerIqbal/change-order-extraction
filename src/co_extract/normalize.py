@@ -244,7 +244,7 @@ def parse_days(raw: int | str | None) -> int | None:
 class Normalized:
     change_order: ChangeOrder
     ambiguous: set[str]  # date fields whose day/month order was a guess
-    unreadable: set[str]  # fields the model returned but we could not parse
+    unreadable: dict[str, str]  # field -> the text the model returned but we could not parse
 
 
 def _clean_references(raw: list[str] | None) -> list[str] | None:
@@ -255,13 +255,13 @@ def _clean_references(raw: list[str] | None) -> list[str] | None:
 def to_change_order(extraction: LLMExtraction, day_first: bool = False) -> Normalized:
     """Normalise every field: ISO dates, 2-place Decimals, ints, trimmed names."""
     ambiguous: set[str] = set()
-    unreadable: set[str] = set()
+    unreadable: dict[str, str] = {}
 
     def convert(name: str, llm: LLMField[Any], parse: Callable[[Any], Any]) -> Field[Any]:
         present = llm.value not in (None, [], "")
         value = parse(llm.value) if present else None
         if present and value is None:
-            unreadable.add(name)
+            unreadable[name] = str(llm.value)
         return Field(value=value, evidence=llm.evidence, page=llm.page)
 
     def date_of(name: str, llm: LLMField[str]) -> Field[date]:

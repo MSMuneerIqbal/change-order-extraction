@@ -140,3 +140,29 @@ def test_threshold_is_configurable():
     response = good_extraction()
     strict = run(text_doc(GOOD_DOC), response, threshold=0.999)
     assert strict.needs_review
+
+
+def test_two_change_orders_in_one_file_are_flagged_with_a_clear_reason():
+    doc = text_doc(
+        "CHANGE ORDER No. CO-5\nAdd two sump pits.\nTOTAL CHANGE ORDER AMOUNT: $3,800.00",
+        "CHANGE ORDER No. CO-6\nDelete planter walls.\nTOTAL CHANGE ORDER AMOUNT: ($2,250.00)",
+    )
+    response = extraction(
+        change_order_number=f("CO-5", "CHANGE ORDER No. CO-5"),
+        description=f("Add two sump pits.", "Add two sump pits."),
+        total_amount=f("$3,800.00", "TOTAL CHANGE ORDER AMOUNT: $3,800.00"),
+    )
+    result = run(doc, response)
+    assert "multiple_change_orders" in {w.code for w in result.validation.warnings}
+    assert any("more than one change order (CO-5, CO-6)" in r for r in result.review_reasons)
+    assert result.needs_review
+
+
+def test_a_value_that_is_not_an_amount_is_flagged_with_what_the_model_returned():
+    doc = text_doc(GOOD_DOC)
+    response = good_extraction()
+    response.tax = f("no tax, owner is exempt", "Sales tax (8.25%) $122.10")
+    result = run(doc, response)
+    assert result.change_order.tax.value is None and result.change_order.tax.confidence < 0.7
+    assert any("tax: the model returned 'no tax, owner is exempt'" in r for r in result.review_reasons)
+    assert result.needs_review

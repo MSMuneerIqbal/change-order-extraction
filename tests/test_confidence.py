@@ -212,3 +212,17 @@ def test_unverifiable_values_get_half_the_evidence_bonus():
     fld = Field(value=ReasonCategory.owner_request, evidence="Approved by: Robert Okafor", page=1)
     assert score("reason_category", fld) == pytest.approx(c.BASE_NON_NULL + c.EVIDENCE_VERIFIED_UNCHECKED)
     assert c.EVIDENCE_VERIFIED_UNCHECKED < c.EVIDENCE_VERIFIED
+
+
+@pytest.mark.parametrize(
+    "days, evidence, expected",
+    [
+        (2, "We would need two extra working days on the schedule", True),
+        (21, "an extension of twenty-one calendar days", True),
+        (30, "thirty days", True),
+        (2, "We would need three extra working days", False),
+        (12, "within twelve days", True),
+    ],
+)
+def test_spelled_out_day_counts_follow_from_the_quote(days, evidence, expected):
+    assert c.value_supported("schedule_impact_days", days, evidence) is expected

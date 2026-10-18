@@ -10,26 +10,36 @@ from co_extract.confidence import ScoringContext, score_change_order
 from co_extract.llm import Extractor, estimate_cost
 from co_extract.loader import LoadedDocument, load_document
 from co_extract.normalize import infer_day_first, to_change_order
-from co_extract.rules import extract_with_rules, find_injection_phrases
+from co_extract.rules import extract_with_rules, find_change_order_numbers, find_injection_phrases
 from co_extract.schema import REQUIRED_FIELDS, ChangeOrder, ExtractionResult, Issue, Processing, Validation
 from co_extract.validate import validate
 
 DEFAULT_REVIEW_THRESHOLD = 0.7
 # Warnings that are serious enough to send the document to a person.
-REVIEW_WARNING_CODES = frozenset({"ambiguous_date", "possible_prompt_injection", "truncated_document"})
+REVIEW_WARNING_CODES = frozenset(
+    {"ambiguous_date", "possible_prompt_injection", "truncated_document", "multiple_change_orders"}
+)
 
 
-def _extra_warnings(doc: LoadedDocument, ambiguous: set[str], unreadable: set[str]) -> list[Issue]:
+def _extra_warnings(doc: LoadedDocument, ambiguous: set[str], unreadable: dict[str, str]) -> list[Issue]:
     warnings = [
         Issue(code="ambiguous_date", message=f"{name} is a numeric date that could be day-first or month-first", fields=[name])
         for name in sorted(ambiguous)
     ]
     warnings += [
-        Issue(code="unreadable_value", message=f"{name} was returned but could not be parsed", fields=[name])
-        for name in sorted(unreadable)
+        Issue(code="unreadable_value", message=f"{name}: the model returned '{raw}', which is not a usable value", fields=[name])
+        for name, raw in sorted(unreadable.items())
     ]
     if doc.truncated:
         warnings.append(Issue(code="truncated_document", message="document is longer than the page limit; later pages were not read"))
+    numbers = find_change_order_numbers(doc)
+    if len(numbers) > 1:
+        warnings.append(
+            Issue(
+                code="multiple_change_orders",
+                message=f"file contains more than one change order ({', '.join(numbers)}); only the first is extracted",
+            )
+        )
     for line in find_injection_phrases(doc):
         warnings.append(Issue(code="possible_prompt_injection", message=f"text that looks like an instruction to an AI: '{line}'"))
     return warnings
@@ -44,7 +54,7 @@ def _required_confidence(co: ChangeOrder, name: str) -> float:
 
 
 def decide_review(
-    co: ChangeOrder, validation: Validation, notes: list[str], unreadable: set[str], threshold: float
+    co: ChangeOrder, validation: Validation, notes: list[str], unreadable: dict[str, str], threshold: float
 ) -> tuple[bool, list[str]]:
     """Return (needs_review, reasons)."""
     reasons = [f"validation error: {issue.message}" for issue in validation.errors]
@@ -52,7 +62,7 @@ def decide_review(
         confidence = _required_confidence(co, name)
         if confidence < threshold:
             reasons.append(f"required field {name} has low confidence ({confidence:.2f} < {threshold})")
-    reasons += [f"unreadable value: {name}" for name in sorted(unreadable)]
+    reasons += [f"{name}: the model returned '{raw}', which is not a usable value" for name, raw in sorted(unreadable.items())]
     reasons += notes
     reasons += [w.message for w in validation.warnings if w.code in REVIEW_WARNING_CODES]
     return bool(reasons), reasons
@@ -74,7 +84,7 @@ def process_loaded(
 
     validation = validate(co, today)
     validation.warnings += _extra_warnings(doc, normalized.ambiguous, normalized.unreadable)
-    ctx = ScoringContext(doc, rules, validation, normalized.ambiguous, normalized.unreadable)
+    ctx = ScoringContext(doc, rules, validation, normalized.ambiguous, set(normalized.unreadable))
     score_change_order(co, ctx)
     needs_review, reasons = decide_review(co, validation, ctx.notes, normalized.unreadable, threshold)
 

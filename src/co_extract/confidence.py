@@ -100,6 +100,19 @@ def _clamp(x: float) -> float:
 
 
 _NUMBER_TOKEN = re.compile(r"\d(?:[\d,./-]*\d)?")
+_UNITS = {w: i for i, w in enumerate(
+    "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen "
+    "sixteen seventeen eighteen nineteen".split())}  # fmt: skip
+_TENS = {w: 10 * i for i, w in enumerate("_ _ twenty thirty forty fifty sixty seventy eighty ninety".split()) if w != "_"}
+
+
+def _spelled_numbers(text: str) -> set[int]:
+    """Numbers written as words ('two', 'twenty-one'), so '2 days' can follow from 'two extra days'."""
+    found = set()
+    for m in re.finditer(r"\b(?:(" + "|".join(_TENS) + r")(?:[ -](one|two|three|four|five|six|seven|eight|nine))?|(" + "|".join(_UNITS) + r"))\b", text.lower()):
+        tens, unit, word = m.groups()
+        found.add(_TENS[tens] + (_UNITS[unit] if unit else 0) if tens else _UNITS[word])
+    return found
 
 
 def _quote_in_text(quote: str, text: str) -> bool:
@@ -146,7 +159,7 @@ def value_supported(name: str, value: Any, evidence: str) -> bool | None:
         found = find_amounts(evidence)
         return value in found or -value in found
     if name == "schedule_impact_days":
-        numbers = {int(n) for n in re.findall(r"\d+", evidence)}
+        numbers = {int(n) for n in re.findall(r"\d+", evidence)} | _spelled_numbers(evidence)
         return abs(value) in numbers or (value == 0 and bool(re.search(r"\b(no|none|nil|zero)\b", evidence, re.I)))
     if name == "currency":
         return normalize_currency(evidence) == value or (value == "USD" and "$" in evidence)
