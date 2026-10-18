@@ -33,14 +33,14 @@
     "client": {
       "value": "Arden & Pike Construction",
       "confidence": 0.75,
-      "evidence": "Owner / GC (To): Arden & Pike Construction",
+      "evidence": "Owner / GC (To):  Arden & Pike Construction",
       "page": 1,
       "method": "llm"
     },
     "date_issued": {
       "value": "2026-07-21",
       "confidence": 0.75,
-      "evidence": "Date Issued: July 21, 2026",
+      "evidence": "Date Issued:  July 21, 2026",
       "page": 1,
       "method": "llm"
     },
@@ -175,8 +175,8 @@
   "processing": {
     "model": "gpt-5-mini",
     "input_tokens": 4490,
-    "output_tokens": 1574,
-    "latency_ms": 20485,
-    "cost_usd_estimate": 0.00427
+    "output_tokens": 1576,
+    "latency_ms": 18729,
+    "cost_usd_estimate": 0.004274
   }
 }

@@ -26,7 +26,7 @@
     "contractor": {
       "value": "Summit Roofing & Sheet Metal Inc.",
       "confidence": 0.9,
-      "evidence": "Summit Roofing & Sheet Metal Inc. | Page 1",
+      "evidence": "Contractor (From): Summit Roofing & Sheet Metal Inc.",
       "page": 1,
       "method": "llm"
     },
@@ -155,9 +155,9 @@
     },
     "signed": {
       "value": false,
-      "confidence": 0.5,
-      "evidence": null,
-      "page": null,
+      "confidence": 0.85,
+      "evidence": "Approved by: ________________________ Date: __________ Signature: ________________________",
+      "page": 1,
       "method": "llm"
     },
     "references": {
@@ -198,8 +198,8 @@
   "processing": {
     "model": "gpt-5-mini",
     "input_tokens": 2159,
-    "output_tokens": 1743,
-    "latency_ms": 13809,
-    "cost_usd_estimate": 0.004026
+    "output_tokens": 1967,
+    "latency_ms": 18061,
+    "cost_usd_estimate": 0.004474
   }
 }

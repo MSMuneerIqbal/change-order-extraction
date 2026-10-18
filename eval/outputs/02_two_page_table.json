@@ -54,14 +54,14 @@
     "description": {
       "value": "Electrical rough-in revisions on Levels 2-4 per ASI-12 and RFI-231: relocate circuits, add lighting and controls, update panel schedules.",
       "confidence": 0.85,
-      "evidence": "Electrical rough-in revisions on Levels 2-4 per ASI-12 and RFI-231: relocate circuits, add lighting and controls, update\npanel schedules.",
+      "evidence": "Electrical rough-in revisions on Levels 2-4 per ASI-12 and RFI-231: relocate circuits, add lighting and controls, update panel schedules.",
       "page": 1,
       "method": "llm"
     },
     "reason_category": {
       "value": "design_change",
       "confidence": 0.85,
-      "evidence": "Electrical rough-in revisions on Levels 2-4 per ASI-12 and RFI-231: relocate circuits, add lighting and controls, update\npanel schedules.",
+      "evidence": "Electrical rough-in revisions on Levels 2-4 per ASI-12 and RFI-231: relocate circuits, add lighting and controls, update panel schedules.",
       "page": 1,
       "method": "llm"
     },
@@ -266,7 +266,7 @@
     "signed": {
       "value": true,
       "confidence": 0.85,
-      "evidence": "Approved by: Elaine Brandt Date: 19 Mar 2026",
+      "evidence": "Elaine Brandt",
       "page": 2,
       "method": "llm"
     },
@@ -299,8 +299,8 @@
   "processing": {
     "model": "gpt-5-mini",
     "input_tokens": 2489,
-    "output_tokens": 2840,
-    "latency_ms": 22471,
-    "cost_usd_estimate": 0.006302
+    "output_tokens": 3127,
+    "latency_ms": 32551,
+    "cost_usd_estimate": 0.006876
   }
 }

@@ -73,7 +73,7 @@
         "unit_price": "186.00",
         "amount": "7068.00",
         "confidence": 0.9,
-        "evidence": "Footing concrete, 4000 psi, revised pour 38 CY $186.00 $7,068.00",
+        "evidence": "Footing concrete, 4000 psi, revised pour\n38\nCY\n$186.00\n$7,068.00",
         "page": 1
       },
       {
@@ -83,7 +83,7 @@
         "unit_price": "1650.00",
         "amount": "3960.00",
         "confidence": 0.9,
-        "evidence": "Additional rebar, #5 at grade beam 2.4 TON $1,650.00 $3,960.00",
+        "evidence": "Additional rebar, #5 at grade beam\n2.4\nTON\n$1,650.00\n$3,960.00",
         "page": 1
       },
       {
@@ -93,14 +93,14 @@
         "unit_price": "780.00",
         "amount": "780.00",
         "confidence": 0.9,
-        "evidence": "Pump truck, half day 1 EA $780.00 $780.00",
+        "evidence": "Pump truck, half day\n1\nEA\n$780.00\n$780.00",
         "page": 1
       }
     ],
     "subtotal": {
       "value": "11808.00",
       "confidence": 0.98,
-      "evidence": "Subtotal $11,808.00",
+      "evidence": "Subtotal\n$11,808.00",
       "page": 1,
       "method": "llm+rule"
     },
@@ -114,7 +114,7 @@
     "total_amount": {
       "value": "11808.00",
       "confidence": 0.98,
-      "evidence": "TOTAL CHANGE ORDER AMOUNT $11,808.00",
+      "evidence": "TOTAL CHANGE ORDER AMOUNT\n$11,808.00",
       "page": 1,
       "method": "llm+rule"
     },
@@ -189,8 +189,8 @@
   "processing": {
     "model": "gpt-5-mini",
     "input_tokens": 2200,
-    "output_tokens": 2190,
-    "latency_ms": 16444,
-    "cost_usd_estimate": 0.00493
+    "output_tokens": 2143,
+    "latency_ms": 25213,
+    "cost_usd_estimate": 0.004836
   }
 }

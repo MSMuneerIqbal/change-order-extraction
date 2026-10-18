@@ -54,7 +54,7 @@
     "description": {
       "value": "Add isolation valves and a glycol flush to the hydronic heating loop at the owner's request to simplify future servicing.",
       "confidence": 0.85,
-      "evidence": "Add isolation valves and a glycol flush to the hydronic heating loop at the owner's request to simplify future servicing.",
+      "evidence": "Description of change Add isolation valves and a glycol flush to the hydronic heating loop at the owner's request to simplify future servicing.",
       "page": 1,
       "method": "llm"
     },
@@ -177,8 +177,8 @@
   "processing": {
     "model": "gpt-5-mini",
     "input_tokens": 2193,
-    "output_tokens": 1807,
-    "latency_ms": 16907,
-    "cost_usd_estimate": 0.004162
+    "output_tokens": 2050,
+    "latency_ms": 21257,
+    "cost_usd_estimate": 0.004648
   }
 }

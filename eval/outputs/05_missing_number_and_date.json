@@ -155,9 +155,9 @@
     },
     "signed": {
       "value": false,
-      "confidence": 0.5,
-      "evidence": null,
-      "page": null,
+      "confidence": 0.85,
+      "evidence": "Requested by: ________________________",
+      "page": 1,
       "method": "llm"
     },
     "references": {
@@ -195,8 +195,8 @@
   "processing": {
     "model": "gpt-5-mini",
     "input_tokens": 2119,
-    "output_tokens": 1846,
-    "latency_ms": 13647,
-    "cost_usd_estimate": 0.004222
+    "output_tokens": 1966,
+    "latency_ms": 27967,
+    "cost_usd_estimate": 0.004462
   }
 }

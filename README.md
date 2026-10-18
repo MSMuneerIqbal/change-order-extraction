@@ -44,12 +44,14 @@ cp .env.example .env         # then put your key in .env
 | `OPENAI_BASE_URL` | empty for OpenAI (Responses API); set it to use another OpenAI-compatible endpoint such as Gemini's (Chat Completions API) |
 | `REVIEW_THRESHOLD` | required-field confidence below this sets `needs_review` (default 0.7) |
 
+The first command that calls the model imports the OpenAI SDK, which can take a while on a cold machine; `--help` and `--rules-only` do not.
+
 No `uv`? `pip install -r requirements.txt` and run `python -m co_extract.cli ...` with `PYTHONPATH=src`.
 
 ## Run
 
 ```bash
-uv run pytest                                      # 172 tests, no API key needed
+uv run pytest                                      # 182 tests, no API key needed
 uv run python scripts/make_samples.py              # regenerate data/samples + data/labels (deterministic)
 uv run co-extract extract data/samples --out out/  # a file or a folder
 uv run co-extract eval                             # runs every sample, writes eval/results.md and .json
@@ -67,7 +69,7 @@ One JSON file per document. This is real output for `data/samples/01_clean_form.
   "pages": 1,
   "change_order": {
     "change_order_number": {"value": "CO-014", "confidence": 0.98, "evidence": "Change Order No.: CO-014", "page": 1, "method": "llm+rule"},
-    "total_amount":        {"value": "5689.62", "confidence": 0.98, "evidence": "TOTAL CHANGE ORDER AMOUNT
+    "total_amount":        {"value": "5689.62", "confidence": 0.98, "evidence": "TOTAL CHANGE ORDER AMOUNT $5,689.62", "page": 1, "method": "llm+rule"},
 $5,689.62", "page": 1, "method": "llm+rule"},
     "currency":            {"value": null, "confidence": 0.85, "evidence": null, "page": null, "method": "llm"},
     "line_items": [
@@ -79,7 +81,7 @@ $5,689.62", "page": 1, "method": "llm+rule"},
   "validation": {"errors": [], "warnings": [{"code": "missing_currency", "message": "amounts found but no currency", "fields": ["currency"]}]},
   "needs_review": false,
   "review_reasons": [],
-  "processing": {"model": "gpt-5-mini", "input_tokens": 2286, "output_tokens": 1710, "latency_ms": 20097, "cost_usd_estimate": 0.003992}
+  "processing": {"model": "gpt-5-mini", "input_tokens": 2286, "output_tokens": 2228, "latency_ms": 25549, "cost_usd_estimate": 0.005027}
 }
 ```
 
@@ -95,13 +97,13 @@ Live run with `gpt-5-mini` on the 12 synthetic documents (`eval/results.md`, det
 
 | | |
 |---|---|
-| Field accuracy | 97.4% (222 of 228); 90.4% in the first run, before I fixed labels and the prompt |
+| Field accuracy | 98.2% (224 of 228) in the final run; 97.4% and 97.8% in two earlier runs with the same prompt; 90.4% in the first run, before I fixed labels and the prompt |
 | Line items, precision / recall | 100% / 100% (44 of 44) |
 | Flagged `needs_review` | 4 of 12 (the missing number, the arithmetic error, the ambiguous date, the injected instruction) |
-| Latency / cost per document | about 17 s / $0.0045 (estimate) |
+| Latency / cost per document | about 16 to 23 s / $0.0045 to $0.0046 (estimate; latency varied between runs) |
 
 I tuned the prompt and labels on these same 12 documents, so treat the accuracy as a development-set number, not
-a held-out estimate. A second identical run gave 97.8% (one subjective field flipped; every review decision was the same). The 6 remaining wrong fields are judgement calls (`reason_category`, and who the client and
+a held-out estimate. Three runs of the same prompt gave 97.4%, 97.8% and 98.2%, so a difference of a field or two between runs is noise; every review decision was the same across the runs. The 4 remaining wrong fields are judgement calls (`reason_category`, and who the client and
 requester are in the email), and the confidence score does not catch them.
 
 ## How confidence works
@@ -133,7 +135,7 @@ the text looks like instructions aimed at an AI, or the document was longer than
 - Confidence does not catch judgement errors (`reason_category`, who the client is in an email): a real quote does not prove a classification is right.
 - With only 6 wrong fields in the eval, the calibration table cannot show whether confidence is well calibrated.
 - A bare `$` gives a null currency and a warning, so most documents here carry that warning.
-- One change order per file. If a file holds several, the prompt asks for the first and ignores the rest; nothing detects the others.
+- One change order per file. If a file holds several, the prompt asks for the first and ignores the rest. Several "Change Order No." headings are detected and flagged for review, but a file that numbers its change orders differently is not.
 - Crossed-out values are only visible on image pages. A strike-through drawn over a text layer does not show up in the extracted text.
 - Scanned pages have no text layer, so their evidence quotes cannot be verified, and the rule extractor sees nothing there.
 - Numeric dates such as `03/04/26` default to month-first unless another date in the document settles it; they are flagged either way.

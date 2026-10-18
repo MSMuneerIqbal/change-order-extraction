@@ -145,9 +145,9 @@
     },
     "signed": {
       "value": false,
-      "confidence": 0.85,
-      "evidence": "Approved by: ________________________ Date: __________",
-      "page": 1,
+      "confidence": 0.5,
+      "evidence": null,
+      "page": null,
       "method": "llm"
     },
     "references": {
@@ -182,8 +182,8 @@
   "processing": {
     "model": "gpt-5-mini",
     "input_tokens": 2134,
-    "output_tokens": 1653,
-    "latency_ms": 13616,
-    "cost_usd_estimate": 0.00384
+    "output_tokens": 1506,
+    "latency_ms": 16542,
+    "cost_usd_estimate": 0.003546
   }
 }
