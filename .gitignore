@@ -7,3 +7,33 @@ __pycache__/
 dist/
 build/
 out/
+
+# AI coding assistants: local settings, memory, prompts and caches
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+GEMINI.md
+AGENT-PROMPT.md
+.cursor/
+.cursorrules
+.cursorignore
+.windsurf/
+.windsurfrules
+.aider*
+.continue/
+.cline/
+.clinerules
+.roo/
+.roomodes
+.codex/
+.gemini/
+.copilot/
+.github/copilot-instructions.md
+.codeium/
+.kiro/
+.mcp.json
+
+# Scratch space for agents and local experiments
+.scratch/
+scratchpad/
